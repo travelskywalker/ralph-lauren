@@ -6,18 +6,25 @@ import { StatusBar } from '@ionic-native/status-bar';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
+import { WelcomePage } from '../pages/welcome/welcome';
 import { EvtProvider } from '../providers/evt/evt';
 
 
 const pages = [ MyApp,
-      HomePage
+      HomePage,
+      WelcomePage
       ];
 
 @NgModule({
   declarations: pages,
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp,{}, {
+      links: [
+        { component: HomePage, name: 'Home', segment: 'home' },
+        { component: WelcomePage, name: 'WelcomePage', segment: 'welcome' }
+      ]
+    })
   ],
   bootstrap: [IonicApp],
   entryComponents: pages,

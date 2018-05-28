@@ -1,14 +1,62 @@
-<ion-header>
-  <ion-navbar>
-    <ion-title>
-      Ionic Blank
-    </ion-title>
-  </ion-navbar>
-</ion-header>
+<ion-content>
+	<section class="main">
+	 <!-- [ngStyle]="{'background-image':'url('+ss?.imgs[bgInd]+')'}" -->
+		<img class="bg" [src]="bg" [ngClass]="{'blocked':startSlides}"/>
+		<ion-slides autoplay="3000" loop="true" speed="1500" effect="fade" initialSlide="0" *ngIf="startSlides">
+			<ion-slide *ngFor="let img of ss?.imgs; let i = index;">
+				<img [src]="img">
+		    </ion-slide>
+		</ion-slides>
+		<div class="part1" *ngIf="lang?.length <= 0">
+			<p class="text-top">
+				Congratulations on your <br/>
+				polo ralph lauren purchase.
+			</p>
 
-<ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+			<h2 (click)="launchSlides()">Welcome</h2>
+			<ion-row>
+				<ion-col col-6 (click)="proceedFlow('eng')">
+					<p class="text">
+						ENGLISH
+					</p>
+					<p class="caret">
+						&gt;
+					</p>
+				</ion-col>
+				<ion-col col-6 (click)="proceedFlow('pinyin')">
+					<p class="text">
+						漢語
+					</p>
+					<p class="caret">
+						&gt;
+					</p>
+				</ion-col>
+			</ion-row>
+		</div>
+		<div class="part2" *ngIf="lang?.length > 0">
+			<span class="texter">
+				<p class="sm-txt">
+					Choose an occasion to win a
+				</p>
+				<p class="lrg-txt">
+					Polo Ralph Lauren<br/>
+					Wardrobe
+				</p>
+				<p class="sm-txt">
+					tailored for you specifically<br/>
+					for that event.
+				</p>
+			</span>
+			<ion-row>
+				<ion-col col-12 (click)="proceedFlow('eng')">
+					<p class="text">
+						PROCEED
+					</p>
+					<p class="caret">
+						&gt;
+					</p>
+				</ion-col>
+			</ion-row>
+		</div>
+	</section>
 </ion-content>
