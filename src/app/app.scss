@@ -24,3 +24,16 @@
 	font-family:"gotham";
 	src: url("../assets/fonts/Gotham-Book.otf") format("opentype");
 }
+
+
+img#logo{
+	position:absolute;
+	height:3.5vh;
+	width:3.5vh;
+	z-index:3;
+	top:2.5vh;
+	left:0;
+	right:0;
+	margin:auto;
+	display:block;
+}
