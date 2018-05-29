@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams, Menu, MenuController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Menu } from 'ionic-angular';
 
 /**
  * Generated class for the ThankYou2Page page.
@@ -18,6 +18,9 @@ export class ThankYou2Page {
 	salutation:string = "Mr.";
 	name:string = "Maya";
 	@ViewChild(Menu) menu: Menu;
+
+	filled:string = "../assets/imgs/star-filled.svg";
+	empty:string = "../assets/imgs/star-empty.svg";
 
 	scores : {q1:number,q2:number,q3:number} = {q1:0,q2:0,q3:0};
 
