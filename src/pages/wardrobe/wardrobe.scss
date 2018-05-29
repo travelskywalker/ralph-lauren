@@ -1,0 +1,92 @@
+page-wardrobe {
+	ion-slide{
+		background-size: cover !important;
+		background-position: center !important;
+	}
+
+	.segment {
+	    height: 100vh;
+	}
+
+	.content{
+		height: 100%;
+		color: #ffffff;
+	}
+
+	.vertical-center{
+		align-content: center;
+		display: flex;
+		justify-content: center;
+		flex-direction: column;
+	}
+
+	.navigation{
+		position:absolute;
+		clear:both;
+		width:100%;
+		margin:auto;
+		bottom:15vh;
+		p{
+			position:relative;
+			display:block;
+			clear:both;
+			width:100%;
+			margin:auto;
+			text-align:center;
+			text-transform:uppercase;
+			color:#fff;
+			font-family:'gotham';
+
+			&.text{
+				font-weight:bold;
+				a{
+					color: #fff;
+				}
+			}
+
+			&.caret{
+				margin-top:1.5vh;
+				font-weight:bolder;
+			}
+
+		}
+	}
+
+	h2{
+		width: 100%;
+		text-transform: uppercase;
+	}
+
+	.passage1{
+		background:url("../assets/imgs/passages/BGSundayBeachClassics.jpg");
+	}
+	.passage2{
+		background:url("../assets/imgs/passages/BGOpeningNightMod.jpg");
+	}
+	.passage3{
+		background:url("../assets/imgs/passages/BGACasualChicHoliday.jpg");
+	}
+	.passage4{
+		background:url("../assets/imgs/passages/BGExplorersOfLeisure.jpg");
+	}
+	.passage5{
+		background:url("../assets/imgs/passages/BGAProfessionalFit.jpg");
+	}
+	.dummy {
+	    bottom: 0;
+	    position: absolute;
+	}
+
+	.swiper-pagination-bullet-active {
+	    height: 35px !important;
+	    width: 3px !important;
+	    margin-left: -1px !important;
+	}
+	.swiper-pagination-bullet {
+	    width: 2px ;
+	    height: 30px ;
+	    margin: 4px 0 ;
+	    background: #c5ba8a;
+	    border-radius: 0 ;
+	}
+}
