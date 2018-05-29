@@ -22,7 +22,7 @@ export class HomePage {
   	let self = this;
   	setTimeout(()=>{
   		self.launchSlides();
-  	},2000);
+  	},5000);
   }
 
   ionViewDidEnter(){
