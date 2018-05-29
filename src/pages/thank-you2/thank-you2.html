@@ -1,9 +1,198 @@
+<ion-menu [content]="mycontent" side="right" type="push" enabled="true">
+	<ion-content>
+		<img id="logo" src="../assets/imgs/Logo.svg"/>
+		<section class="body">
+			<hr id="top-bar">
+
+			<!-- item 1 -->
+			<span class="item">
+				<p class="question">
+					&quot;This experience makes me want to purchase Ralph Lauren products again.&quot;
+				</p>
+				<span class="stars">
+					<div class="star">
+						<button ion-button (click)="setScore('q1',1)" *ngIf="scores?.q1 <= 0">
+							<img src="../assets/imgs/star-empty.svg"/>
+						</button>
+						<button ion-button (click)="setScore('q1',1)" *ngIf="scores?.q1 >= 1">
+							<img src="../assets/imgs/star-filled.svg"/>
+						</button>
+					</div>
+
+					<div class="star">
+						<button ion-button (click)="setScore('q1',2)" *ngIf="scores?.q1 <= 1">
+							<img src="../assets/imgs/star-empty.svg"/>
+						</button>
+						<button ion-button (click)="setScore('q1',2)" *ngIf="scores?.q1 >= 2">
+							<img src="../assets/imgs/star-filled.svg"/>
+						</button>
+					</div>
+
+					<div class="star">
+						<button ion-button (click)="setScore('q1',3)" *ngIf="scores?.q1 <= 2">
+							<img src="../assets/imgs/star-empty.svg"/>
+						</button>
+						<button ion-button (click)="setScore('q1',3)" *ngIf="scores?.q1 >= 3">
+							<img src="../assets/imgs/star-filled.svg"/>
+						</button>
+					</div>
+
+					<div class="star">
+						<button ion-button (click)="setScore('q1',4)" *ngIf="scores?.q1 <= 3">
+							<img src="../assets/imgs/star-empty.svg"/>
+						</button>
+						<button ion-button (click)="setScore('q1',4)" *ngIf="scores?.q1 >= 4">
+							<img src="../assets/imgs/star-filled.svg"/>
+						</button>
+					</div>
+
+					<div class="star">
+						<button ion-button (click)="setScore('q1',5)" *ngIf="scores?.q1 <= 4">
+							<img src="../assets/imgs/star-empty.svg"/>
+						</button>
+						<button ion-button (click)="setScore('q1',5)" *ngIf="scores?.q1 >= 5">
+							<img src="../assets/imgs/star-filled.svg"/>
+						</button>
+					</div>
+				</span>
+			</span>
+			<!-- end of item 1 -->
+
+
+			<!-- item 2 -->
+			<span class="item">
+				<p class="question">
+					&quot;This experience brought me closer to the essence of Ralph Lauren.&quot;
+				</p>
+				<span class="stars">
+					<div class="star">
+						<button ion-button (click)="setScore('q2',1)" *ngIf="scores?.q2 <= 0">
+							<img src="../assets/imgs/star-empty.svg"/>
+						</button>
+						<button ion-button (click)="setScore('q2',1)" *ngIf="scores?.q2 >= 1">
+							<img src="../assets/imgs/star-filled.svg"/>
+						</button>
+					</div>
+
+					<div class="star">
+						<button ion-button (click)="setScore('q2',2)" *ngIf="scores?.q2 <= 1">
+							<img src="../assets/imgs/star-empty.svg"/>
+						</button>
+						<button ion-button (click)="setScore('q2',2)" *ngIf="scores?.q2 >= 2">
+							<img src="../assets/imgs/star-filled.svg"/>
+						</button>
+					</div>
+
+					<div class="star">
+						<button ion-button (click)="setScore('q2',3)" *ngIf="scores?.q2 <= 2">
+							<img src="../assets/imgs/star-empty.svg"/>
+						</button>
+						<button ion-button (click)="setScore('q2',3)" *ngIf="scores?.q2 >= 3">
+							<img src="../assets/imgs/star-filled.svg"/>
+						</button>
+					</div>
+
+					<div class="star">
+						<button ion-button (click)="setScore('q2',4)" *ngIf="scores?.q2 <= 3">
+							<img src="../assets/imgs/star-empty.svg"/>
+						</button>
+						<button ion-button (click)="setScore('q2',4)" *ngIf="scores?.q2 >= 4">
+							<img src="../assets/imgs/star-filled.svg"/>
+						</button>
+					</div>
+
+					<div class="star">
+						<button ion-button (click)="setScore('q2',5)" *ngIf="scores?.q2 <= 4">
+							<img src="../assets/imgs/star-empty.svg"/>
+						</button>
+						<button ion-button (click)="setScore('q2',5)" *ngIf="scores?.q2 >= 5">
+							<img src="../assets/imgs/star-filled.svg"/>
+						</button>
+					</div>
+				</span>
+			</span>
+			<!-- end of item 2 -->
+
+			<!-- item 3 -->
+			<span class="item">
+				<p class="question">
+					&quot;This experience makes me want to scan the QR code to unlock more Ralph Lauren passages.&quot;
+				</p>
+				<span class="stars">
+					<div class="star">
+						<button ion-button (click)="setScore('q3',1)" *ngIf="scores?.q3 <= 0">
+							<img src="../assets/imgs/star-empty.svg"/>
+						</button>
+						<button ion-button (click)="setScore('q3',1)" *ngIf="scores?.q3 >= 1">
+							<img src="../assets/imgs/star-filled.svg"/>
+						</button>
+					</div>
+
+					<div class="star">
+						<button ion-button (click)="setScore('q3',2)" *ngIf="scores?.q3 <= 1">
+							<img src="../assets/imgs/star-empty.svg"/>
+						</button>
+						<button ion-button (click)="setScore('q3',2)" *ngIf="scores?.q3 >= 2">
+							<img src="../assets/imgs/star-filled.svg"/>
+						</button>
+					</div>
+
+					<div class="star">
+						<button ion-button (click)="setScore('q3',3)" *ngIf="scores?.q3 <= 2">
+							<img src="../assets/imgs/star-empty.svg"/>
+						</button>
+						<button ion-button (click)="setScore('q3',3)" *ngIf="scores?.q3 >= 3">
+							<img src="../assets/imgs/star-filled.svg"/>
+						</button>
+					</div>
+
+					<div class="star">
+						<button ion-button (click)="setScore('q3',4)" *ngIf="scores?.q3 <= 3">
+							<img src="../assets/imgs/star-empty.svg"/>
+						</button>
+						<button ion-button (click)="setScore('q3',4)" *ngIf="scores?.q3 >= 4">
+							<img src="../assets/imgs/star-filled.svg"/>
+						</button>
+					</div>
+
+					<div class="star">
+						<button ion-button (click)="setScore('q3',5)" *ngIf="scores?.q3 <= 4">
+							<img src="../assets/imgs/star-empty.svg"/>
+						</button>
+						<button ion-button (click)="setScore('q3',5)" *ngIf="scores?.q3 >= 5">
+							<img src="../assets/imgs/star-filled.svg"/>
+						</button>
+					</div>
+				</span>
+			</span>
+			<!-- end of item 3 -->
+
+		<ion-row class="footer">
+			<ion-col col-12 (click)="proceed()">
+				<p class="text">
+					SUBMIT
+				</p>
+				<p class="caret">
+					<ion-icon ios="ios-arrow-forward" md="ios-arrow-forward"></ion-icon>
+				</p>
+			</ion-col>
+		</ion-row>
+
+		</section>
+
+	</ion-content>
+</ion-menu>
+
+<ion-nav #mycontent [root]="ThankYou2Page"></ion-nav>
+
 <ion-content>
 	<img id="logo" src="../assets/imgs/Logo.svg"/>
 
 
 	<p class="content">
-		Thanks and congratulations, Mr. Maya. <br/>
+		Thanks and congratulations, {{salutation}} {{name}}. <br/>
 		Welcome to the exclusive world of Ralph Lauren.
 	</p>
+
+
 </ion-content>
