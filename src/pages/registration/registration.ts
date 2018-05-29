@@ -25,4 +25,8 @@ export class RegistrationPage {
     console.log('ionViewDidLoad RegistrationPage');
   }
 
+  proceed(){
+  	//submit form
+  }
+
 }

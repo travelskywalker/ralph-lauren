@@ -1,0 +1,139 @@
+page-thank-you2 {
+
+	ion-menu{
+		background-color:transparent !important;
+		z-index:4;
+
+		ion-content{
+			.scroll-content{
+			    background-image: url(../assets/imgs/bg-survey.jpg);
+			    background-size: cover;
+			    background-repeat: no-repeat;
+			    background-position: center;
+
+			    section.body{
+			    	position:relative;
+			    	height:100%;
+			    	width:100%;
+			    	padding-top:13.5vh;
+
+			    	hr{
+			    		height:0.15rem;
+			    		margin:0 auto 5vh;
+			    		background-color:#fff;
+			    		width:20vw;
+			    	}
+
+			    	p.question{
+			    		font-family:'didot';
+			    		color:#fff;
+			    		text-align:center;
+			    		padding:0.5rem 2rem;
+			    		font-size:2.5vh;
+			    	}
+
+			    	span.item{
+			    		width:100%;
+			    		display:block;
+			    		clear:both;
+
+			    		p.question{
+			    			margin:0;
+			    			width:100%;
+			    			display:block;
+			    			clear:both;
+			    		}
+
+			    		span.stars{
+			    			margin:3vh auto;
+				    		white-space:nowrap;
+				    		width:100%;
+						    position: relative;
+						    display: inline-block;
+						    padding: 0 2vw;
+						    text-align: center;
+
+				    		div.star{
+				    			position:relative;
+				    			display:inline-table;
+				    			width:6.5vh;
+				    			height:6.5vh;
+				    			margin:0 0.5vw;
+				    			button{
+				    				margin:0;
+				    				padding:0;
+				    				background:transparent;
+				    				height:100%;
+				    				width:100%;
+				    				display:block;
+				    				box-shadow:none;
+
+				    				span{
+				    					padding:0.3rem;
+					    				img{
+					    					object-fit:cover;
+					    					width:100%;
+					    				}
+
+				    				}
+				    			}
+				    		}
+				    	}
+			    	}//end of span.item
+
+				ion-row.footer{
+					position:relative;
+					clear:both;
+					width:100%;
+					margin:auto;
+					p{
+						position:relative;
+						display:block;
+						clear:both;
+						width:100%;
+						margin:auto;
+						text-align:center;
+						text-transform:uppercase;
+						color:#fff;
+						font-family:'gotham';
+
+						&.text{
+							font-weight:bold;
+							a{
+								color: #fff;
+							}
+						}
+
+						&.caret{
+							margin-top:1.5vh;
+							font-weight:bolder;
+						}
+
+					}
+				}
+
+			    }// end of section.body
+			}
+		}
+	}
+
+	&>ion-content{
+		&>.scroll-content{
+
+			background-image:url('../assets/imgs/bg-ender.jpg');
+			background-size:cover;
+			background-position:center;
+
+			p.content{
+				font-family:'didot';
+				color:#fff;
+				margin:0;
+				text-align:center;
+				display:block;
+				font-size:2.75vh;
+				padding:35vh 5vw 0;
+			}
+		}
+
+	}
+}

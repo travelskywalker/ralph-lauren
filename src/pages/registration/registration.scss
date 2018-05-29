@@ -8,10 +8,10 @@ page-registration {
 				margin:0;
 				height:100%;
 				width:100%;
-				background-image:url('../assets/imgs/Slides-5.jpg');
+				background-image:url('../assets/imgs/bg-registration.jpg');
 				background-size:cover;
 				background-repeat:no-repeat;
-				background-position:center;
+				background-position:center top;
 
 				color:#fff;
 				font-family:'gotham';
@@ -21,9 +21,10 @@ page-registration {
 
 
 					&.title-top{
-						padding:8.5vh 0 1.5vh;
+						padding:9.5vh 0 1.5vh;
 						text-transform:uppercase;
 						text-align:center;
+						font-size:1.8vh;
 					}
 
 					&.note-bottom{
@@ -79,6 +80,7 @@ page-registration {
 							min-width:100%;
 							position:relative;
 							z-index:2;
+							padding-left:3vw;
 						}
 
 						p{
