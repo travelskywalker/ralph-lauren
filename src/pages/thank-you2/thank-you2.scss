@@ -2,7 +2,9 @@ page-thank-you2 {
 	ion-content{
 		.scroll-content{
 
-			background-color:#000;
+			background-image:url('../assets/imgs/bg-ender.jpg');
+			background-size:cover;
+			background-position:center;
 
 			p.content{
 				font-family:'didot';
