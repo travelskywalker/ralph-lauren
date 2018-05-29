@@ -6,7 +6,6 @@ import { StatusBar } from '@ionic-native/status-bar';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
-import { WelcomePage } from '../pages/welcome/welcome';
 import { RegistrationPage } from '../pages/registration/registration';
 import { EvtProvider } from '../providers/evt/evt';
 
