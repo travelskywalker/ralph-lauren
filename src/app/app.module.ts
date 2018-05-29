@@ -21,7 +21,7 @@ const pages = [ MyApp,
     BrowserModule,
     IonicModule.forRoot(MyApp,{}, {
       links: [
-        { component: HomePage, name: 'Home', segment: 'home' },
+        { component: HomePage, name: 'Home', segment: 'home/:id' },
         { component: WelcomePage, name: 'WelcomePage', segment: 'welcome' }
       ]
     })

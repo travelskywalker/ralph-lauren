@@ -2,7 +2,8 @@
 	<section class="main">
 	 <!-- [ngStyle]="{'background-image':'url('+ss?.imgs[bgInd]+')'}" -->
 		<img class="bg" [src]="bg" [ngClass]="{'blocked':startSlides}"/>
-		<ion-slides autoplay="3000" loop="true" speed="1500" effect="fade" initialSlide="0" *ngIf="startSlides">
+		<ion-slides autoplay="3000" loop="true" speed="2000" effect="fade" initialSlide="0" *ngIf="startSlides">
+			<!--  (ionSlideWillChange)="check($event)" -->
 			<ion-slide *ngFor="let img of ss?.imgs; let i = index;">
 				<img [src]="img">
 		    </ion-slide>
@@ -20,7 +21,7 @@
 						ENGLISH
 					</p>
 					<p class="caret">
-						&gt;
+						<ion-icon ios="ios-arrow-forward" md="ios-arrow-forward"></ion-icon>
 					</p>
 				</ion-col>
 				<ion-col col-6 (click)="proceedFlow('pinyin')">
@@ -28,7 +29,7 @@
 						漢語
 					</p>
 					<p class="caret">
-						&gt;
+						<ion-icon ios="ios-arrow-forward" md="ios-arrow-forward"></ion-icon>
 					</p>
 				</ion-col>
 			</ion-row>
@@ -53,7 +54,7 @@
 						PROCEED
 					</p>
 					<p class="caret">
-						&gt;
+						<ion-icon ios="ios-arrow-forward" md="ios-arrow-forward"></ion-icon>
 					</p>
 				</ion-col>
 			</ion-row>

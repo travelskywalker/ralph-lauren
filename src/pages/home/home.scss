@@ -64,7 +64,7 @@ page-home {
 						text-align:center;
 						text-transform:uppercase;
 						color:#fff;
-						font-family:'HelveticaNeue-Light';
+						font-family:'gotham';
 					}
 
 					ion-row{
@@ -82,7 +82,7 @@ page-home {
 							text-align:center;
 							text-transform:uppercase;
 							color:#fff;
-							font-family:'HelveticaNeue-Light';
+							font-family:'gotham';
 
 							&.text{
 								font-weight:bold;
@@ -143,12 +143,13 @@ page-home {
 							text-transform:uppercase;
 
 							&.sm-txt{
-								font-family:"HelveticaNeue-Light";
+								font-family:"gotham";
+								font-size:1.75vh;
 							}
 
 							&.lrg-txt{
 								font-family:"didot";
-								font-size:5vh;
+								font-size:4.35vh;
 								padding:1vh;
 							}
 						}
@@ -169,7 +170,7 @@ page-home {
 							text-align:center;
 							text-transform:uppercase;
 							color:#fff;
-							font-family:'HelveticaNeue-Light';
+							font-family:'gotham';
 
 							&.text{
 								font-weight:bold;
