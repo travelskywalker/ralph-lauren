@@ -162,7 +162,24 @@ page-home {
 							&.lrg-txt{
 								font-family:"didot";
 								font-size:4.35vh;
+								white-space:nowrap;
 								padding:1vh;
+							}
+						}
+					}
+
+					&.unpurchased{
+						span.texter{
+							p{
+								&.lrg-txt{
+									font-size:8.05vh;
+									line-height:7.25vh;
+									margin:1vh 0;
+								}
+
+								&.sm-txt{
+									font-size:2vh;
+								}
 							}
 						}
 					}

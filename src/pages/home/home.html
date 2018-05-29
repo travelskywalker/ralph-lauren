@@ -9,7 +9,7 @@
 				<img [src]="img">
 		    </ion-slide>
 		</ion-slides>
-		<div class="part1" *ngIf="lang?.length <= 0">
+		<div class="part1" *ngIf="lang?.length <= 0 && purchased && !postpurchase">
 			<p class="text-top">
 				Congratulations on your <br/>
 				polo ralph lauren purchase.
@@ -35,7 +35,9 @@
 				</ion-col>
 			</ion-row>
 		</div>
-		<div class="part2" *ngIf="lang?.length > 0">
+		<!-- end of part 1 -->
+
+		<div class="part2" *ngIf="lang?.length > 0 && purchased && !postpurchase">
 			<span class="texter">
 				<p class="sm-txt">
 					Choose an occasion to win a
@@ -60,5 +62,59 @@
 				</ion-col>
 			</ion-row>
 		</div>
+		<!-- end of part 2 -->
+
+		 <div class="part2 unpurchased" *ngIf = "!purchased && !postpurchase">
+			
+			<span class="texter">
+				<p class="sm-txt">
+					Unlock an
+				</p>
+				<p class="lrg-txt">
+					Exclusive<br/>
+					Experience
+				</p>
+				<p class="sm-txt">
+					when you purchase this<br/>
+					classic fit polo shirt.
+				</p>
+			</span>
+			<ion-row>
+				<ion-col col-12>
+					<p class="text">
+						PROCEED TO OUR WEBSITE
+					</p>
+					<p class="caret">
+						<ion-icon ios="ios-arrow-forward" md="ios-arrow-forward"></ion-icon>
+					</p>
+				</ion-col>
+			</ion-row>
+		 </div>
+		<!-- end of unpurchased -->
+
+
+		 <div class="part2 postpurchase" *ngIf = "postpurchase">
+			
+			<span class="texter">
+				<p class="lrg-txt">
+					Congratulations
+				</p>
+				<p class="sm-txt">
+					on your ralph lauren purchase
+				</p>
+			</span>
+			<ion-row>
+				<ion-col col-12>
+					<p class="text">
+						PROCEED TO OUR WEBSITE
+					</p>
+					<p class="caret">
+						<ion-icon ios="ios-arrow-forward" md="ios-arrow-forward"></ion-icon>
+					</p>
+				</ion-col>
+			</ion-row>
+		 </div>
+		<!-- end of postpurchase -->
+
 	</section>
 </ion-content>

@@ -12,7 +12,10 @@ export class HomePage {
 	startSlides:boolean = false;
 	resetFlag: boolean = false;
 	lang: string = '';
+	purchased:boolean = true;
+	postpurchase:boolean = false;
 	@ViewChild(Slides) slider: Slides;
+	
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   	this.ss.imgs = [];
   	console.log(navParams.get('id'));
