@@ -20,9 +20,15 @@ export class HomePage {
 
   ngAfterViewInit(){
   	let self = this;
-  	setTimeout(()=>{
-  		self.launchSlides();
-  	},5000);
+
+  	let imgld = new Image;
+  	imgld.onload = function(){
+	  	setTimeout(()=>{
+	  		self.launchSlides();
+	  	},2000);
+  	}
+
+  	imgld.src = this.bg;
   }
 
   ionViewDidEnter(){
