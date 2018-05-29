@@ -7,12 +7,13 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { WelcomePage } from '../pages/welcome/welcome';
+import { RegistrationPage } from '../pages/registration/registration';
 import { EvtProvider } from '../providers/evt/evt';
 
 
 const pages = [ MyApp,
       HomePage,
-      WelcomePage
+      RegistrationPage
       ];
 
 @NgModule({
@@ -22,7 +23,7 @@ const pages = [ MyApp,
     IonicModule.forRoot(MyApp,{}, {
       links: [
         { component: HomePage, name: 'Home', segment: 'home/:id' },
-        { component: WelcomePage, name: 'WelcomePage', segment: 'welcome' }
+        { component: RegistrationPage, name: 'RegistrationPage', segment: 'register' }
       ]
     })
   ],
