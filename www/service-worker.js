@@ -19,7 +19,18 @@ self.toolbox.precache(
     './build/main.css',
     './build/polyfills.js',
     'index.html',
-    'manifest.json'
+    'manifest.json',
+    "./assets/imgs/bg-ender.jpg",
+    "./assets/imgs/bg-registration.jpg",
+    "./assets/imgs/bg-survey.jpg",
+    "./assets/imgs/star-empty.svg",
+    "./assets/imgs/star-filled.svg",
+    "./assets/imgs/passages/BGACasualChicHoliday.jpg",
+    "./assets/imgs/passages/BGAProfessionalFit.jpg",
+    "./assets/imgs/passages/BGExplorersOfLeisure.jpg",
+    "./assets/imgs/passages/BGOpeningNightMod.jpg",
+    "./assets/imgs/passages/BGPassageSelection.jpg",
+    "./assets/imgs/passages/BGSundayBeachClassics.jpg"
   ]
 );
 
