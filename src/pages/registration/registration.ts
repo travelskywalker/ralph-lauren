@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
-import { ThankYouPage } from '../thank-you/thank-you';
+// import { ThankYouPage } from '../thank-you/thank-you';
 
 /**
  * Generated class for the RegistrationPage page.
@@ -44,11 +44,42 @@ export class RegistrationPage {
   }
 
   proceed(){
-  	//submit form
-  	localStorage.userData = JSON.stringify(this.userData);
-  	localStorage.fittings = JSON.stringify(this.fittings);
+    // validate form
+    console.log(this.validate(this.userData));
 
-  	this.navCtrl.setRoot(ThankYouPage);
+  	//submit form
+  	// localStorage.userData = JSON.stringify(this.userData);
+  	// localStorage.fittings = JSON.stringify(this.fittings);
+
+
+
+  	// this.navCtrl.setRoot(ThankYouPage);
   }
+
+  validate(data: any){
+    var lastname;
+    var email;
+
+    if(data.lastName != ''){
+      lastname = true;
+    }else{
+      lastname = false;
+    }
+
+    if(data.email != ''){
+      email = true;
+    }else{
+      email = false;
+    }
+
+
+    if(lastname && email)
+      return true;
+    else{
+      return false;
+    }
+  }
+
+
 
 }

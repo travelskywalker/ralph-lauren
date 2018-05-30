@@ -161,10 +161,9 @@ var PassageSelectPage = /** @class */ (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'page-passage-select',template:/*ion-inline-start:"/Users/lei/Documents/projects/dummyapp/rl-app/src/pages/passage-select/passage-select.html"*/'<ion-content>\n	<img id="logo" src="../assets/imgs/Logo.svg"/>\n	<section class="main">\n		<ion-row class="vertical-center" (tap)="choose(0)">\n			<h2>Sunday<br>Beach Classics</h2>\n			<ion-icon name="ios-arrow-forward"></ion-icon>\n		</ion-row>\n		<ion-row class="vertical-center" (tap)="choose(1)">\n			<h2>Opening<br>Night Mod</h2>\n			<ion-icon name="ios-arrow-forward"></ion-icon>\n		</ion-row>\n		<ion-row class="vertical-center" (tap)="choose(2)">\n			<h2>A Casual<br>Chic Holiday</h2>\n			<ion-icon name="ios-arrow-forward"></ion-icon>\n		</ion-row>\n		<ion-row class="vertical-center" (tap)="choose(3)">\n			<h2>Explorers of<br>Leisure</h2>\n			<ion-icon name="ios-arrow-forward"></ion-icon>\n		</ion-row>\n		<ion-row class="vertical-center" (tap)="choose(4)">\n			<h2>A Professional<br>Fit</h2>\n			<ion-icon name="ios-arrow-forward"></ion-icon>\n		</ion-row>\n	</section>\n\n</ion-content>\n'/*ion-inline-end:"/Users/lei/Documents/projects/dummyapp/rl-app/src/pages/passage-select/passage-select.html"*/,
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */]) === "function" && _b || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */]])
     ], PassageSelectPage);
     return PassageSelectPage;
-    var _a, _b;
 }());
 
 //# sourceMappingURL=passage-select.js.map
@@ -240,7 +239,6 @@ var WardrobePage = /** @class */ (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RegistrationPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__thank_you_thank_you__ = __webpack_require__(198);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -250,7 +248,6 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-
 
 
 ;
@@ -269,18 +266,42 @@ var RegistrationPage = /** @class */ (function () {
         console.log('ionViewDidLoad RegistrationPage');
     };
     RegistrationPage.prototype.proceed = function () {
+        // validate form
+        console.log(this.validate(this.userData));
         //submit form
-        localStorage.userData = JSON.stringify(this.userData);
-        localStorage.fittings = JSON.stringify(this.fittings);
-        this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_2__thank_you_thank_you__["a" /* ThankYouPage */]);
+        // localStorage.userData = JSON.stringify(this.userData);
+        // localStorage.fittings = JSON.stringify(this.fittings);
+        // this.navCtrl.setRoot(ThankYouPage);
+    };
+    RegistrationPage.prototype.validate = function (data) {
+        var lastname;
+        var email;
+        if (data.lastName != '') {
+            lastname = true;
+        }
+        else {
+            lastname = false;
+        }
+        if (data.email != '') {
+            email = true;
+        }
+        else {
+            email = false;
+        }
+        if (lastname && email)
+            return true;
+        else {
+            return false;
+        }
     };
     RegistrationPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'page-registration',template:/*ion-inline-start:"/Users/lei/Documents/projects/dummyapp/rl-app/src/pages/registration/registration.html"*/'<!--\n  Generated template for the RegistrationPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n\n<ion-content>\n	<img id="logo" src="../assets/imgs/Logo.svg"/>\n	<section class="form">\n		<p class="title-top">\n			a few details please?<br/>\n			it will be kept confidential\n		</p>\n\n		<ion-row>\n			<ion-col col-4>\n				<a class="label">\n					title\n				</a>\n				<span class="select-container">\n					<select name="gender" [(ngModel)] = "userData.gender">\n						<option value="mr">Mr.</option>\n						<option value="ms">Ms.</option>\n					</select>\n					<ion-icon ios="ios-arrow-down" md="ios-arrow-down"></ion-icon>\n				</span>\n			</ion-col>\n			<ion-col col-8>\n				<a class="label">\n					surname\n				</a>\n				<input type="text" name="surname" [(ngModel)] = "userData.lastName"/>\n			</ion-col>\n		</ion-row>\n\n		<ion-row>\n			<ion-col col-12>\n				<a class="label">\n					email\n				</a>\n				<input type="email" name="email" [(ngModel)] = "userData.email"/>\n			</ion-col>\n		</ion-row>\n\n		<ion-row>\n			<ion-col col-12>\n				<a class="label">\n					age range\n				</a>\n				<span class="select-container">\n					<select name="agerange"  [(ngModel)] = "userData.age">\n						<option value="2636">26 - 36 years old</option>\n						<option value="3747">37 - 47 years old</option>\n						<option value="4858">48 - 58 years old</option>\n					</select>\n					<ion-icon ios="ios-arrow-down" md="ios-arrow-down"></ion-icon>\n				</span>\n			</ion-col>\n		</ion-row>\n\n		<ion-row>\n			<ion-col col-12>\n				<p>fitting details</p>\n			</ion-col>\n		</ion-row>\n\n		<ion-row>\n			<ion-col col-4>\n				<a class="label">\n					top size\n				</a>\n				<span class="select-container">\n					<select name="topsize" [(ngModel)] = "fittings.top">\n						<option *ngFor = "let ts of topSizes" value="{{ts}}">{{ts}}</option>\n					</select>\n					<ion-icon ios="ios-arrow-down" md="ios-arrow-down"></ion-icon>\n				</span>\n			</ion-col>\n			<ion-col col-4>\n				<a class="label">\n					pants size\n				</a>\n				<span class="select-container">\n					<select name="pantssize" [(ngModel)] = "fittings.pants">\n						<option *ngFor = "let ps of pantsSizes" value="{{ps}}">{{ps}}"</option>\n					</select>\n					<ion-icon ios="ios-arrow-down" md="ios-arrow-down"></ion-icon>\n				</span>\n			</ion-col>\n			<ion-col col-4>\n				<a class="label">\n					shoe size\n				</a>\n				<span class="select-container">\n					<select name="shoesize" [(ngModel)] = "fittings.shoe">\n						<option *ngFor = "let ss of shoeSizes" value="{{ss}}">{{ss}} US</option>\n					</select>\n					<ion-icon ios="ios-arrow-down" md="ios-arrow-down"></ion-icon>\n				</span>\n			</ion-col>\n		</ion-row>\n\n		<p class="note-bottom">\n			By tapping submit, you confirm that you <br/>\n			have read and agreed to the <a class="link" href="">Terms and Conditions</a>\n		</p>\n\n\n			<ion-row class="footer">\n				<ion-col col-12 (tap)="proceed()">\n					<p class="text">\n						SUBMIT\n					</p>\n					<p class="caret">\n						<ion-icon ios="ios-arrow-forward" md="ios-arrow-forward"></ion-icon>\n					</p>\n				</ion-col>\n			</ion-row>\n		\n	</section>\n</ion-content>\n'/*ion-inline-end:"/Users/lei/Documents/projects/dummyapp/rl-app/src/pages/registration/registration.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */]) === "function" && _b || Object])
     ], RegistrationPage);
     return RegistrationPage;
+    var _a, _b;
 }());
 
 //# sourceMappingURL=registration.js.map
