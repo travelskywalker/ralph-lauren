@@ -6,7 +6,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 
 // providers
 import { EvtProvider } from '../providers/evt/evt';
-
+import { HttpModule } from '@angular/http';
 
 // pages
 import { MyApp } from './app.component';
@@ -30,6 +30,7 @@ const pages = [ MyApp,
   declarations: pages,
   imports: [
     BrowserModule,
+    HttpModule,
     IonicModule.forRoot(MyApp,{}, {
       links: [
         { component: HomePage, name: 'Home', segment: 'home/:id' },

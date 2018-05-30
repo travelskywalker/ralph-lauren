@@ -41,7 +41,8 @@ webpackEmptyAsyncContext.id = 150;
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HomePage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__passage_select_passage_select__ = __webpack_require__(276);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_evt_evt__ = __webpack_require__(272);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__passage_select_passage_select__ = __webpack_require__(276);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -54,21 +55,45 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var HomePage = /** @class */ (function () {
-    function HomePage(navCtrl, navParams) {
+    function HomePage(navCtrl, navParams, evt) {
+        var _this = this;
         this.navCtrl = navCtrl;
         this.navParams = navParams;
+        this.evt = evt;
         this.ss = {};
-        this.bg = "../assets/imgs/samp1.jpg";
+        this.bg = "../assets/imgs/bg-ender.jpg";
         this.startSlides = false;
         this.resetFlag = false;
         this.lang = '';
         this.purchased = true;
         this.postpurchase = false;
+        this.thngId = '';
         this.ss.imgs = [];
-        console.log(navParams.get('id'));
+        this.thngId = navParams.get('id');
+        if (typeof localStorage.evrythngUser == "undefined" || localStorage.evrythngUser == "") {
+            evt.createUser({ "email": Date.now() + "@unkn.own", "pass": "test1234" }).then(function (evtUser) {
+                localStorage.evrythngUser = evtUser.evrythngUser;
+                localStorage.evrythngApiKey = evtUser.evrythngApiKey;
+                _this.evt.scanThng(_this.thngId).then(function (th) {
+                    if (th.hasOwnProperty('identifiers') && th.identifiers.hasOwnProperty('sku')) {
+                        _this.bg = "../assets/imgs/" + th.identifiers.sku + ".jpg";
+                        _this.thngLoaded();
+                    }
+                });
+            }).catch(console.info);
+        }
+        else {
+            this.evt.scanThng(this.thngId).then(function (th) {
+                if (th.hasOwnProperty('identifiers') && th.identifiers.hasOwnProperty('sku')) {
+                    _this.bg = "../assets/imgs/" + th.identifiers.sku + ".jpg";
+                    _this.thngLoaded();
+                }
+            });
+        }
     }
-    HomePage.prototype.ngAfterViewInit = function () {
+    HomePage.prototype.thngLoaded = function () {
         var self = this;
         var imgld = new Image;
         imgld.onload = function () {
@@ -107,7 +132,7 @@ var HomePage = /** @class */ (function () {
         this.lang = lang;
     };
     HomePage.prototype.toPassage = function () {
-        this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_2__passage_select_passage_select__["a" /* PassageSelectPage */]);
+        this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_3__passage_select_passage_select__["a" /* PassageSelectPage */]);
     };
     __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_8" /* ViewChild */])(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* Slides */]),
@@ -115,12 +140,13 @@ var HomePage = /** @class */ (function () {
     ], HomePage.prototype, "slider", void 0);
     HomePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-home',template:/*ion-inline-start:"/Users/raysantos/ralph-lauren-dev/ralph-lauren-dev/src/pages/home/home.html"*/'<ion-content>\n	<img id="logo" src="../assets/imgs/Logo.svg"/>\n	<section class="main">\n	 <!-- [ngStyle]="{\'background-image\':\'url(\'+ss?.imgs[bgInd]+\')\'}" -->\n		<img class="bg" [src]="bg" [ngClass]="{\'blocked\':startSlides}"/>\n		<ion-slides autoplay="3000" loop="true" speed="2000" effect="fade" initialSlide="0" *ngIf="startSlides">\n			<!--  (ionSlideWillChange)="check($event)" -->\n			<ion-slide *ngFor="let img of ss?.imgs; let i = index;">\n				<img [src]="img">\n		    </ion-slide>\n		</ion-slides>\n		<div class="part1" *ngIf="lang?.length <= 0 && purchased && !postpurchase">\n			<p class="text-top">\n				Congratulations on your <br/>\n				polo ralph lauren purchase.\n			</p>\n\n			<h2 (tap)="launchSlides()">Welcome<br/>\n				<a class="small">歡迎</a>\n			</h2>\n			<ion-row>\n				<ion-col col-6 (tap)="proceedFlow(\'eng\')">\n					<p class="text">\n						ENGLISH\n					</p>\n					<p class="caret">\n						<ion-icon ios="ios-arrow-forward" md="ios-arrow-forward"></ion-icon>\n					</p>\n				</ion-col>\n				<ion-col col-6 (tap)="proceedFlow(\'pinyin\')">\n					<p class="text">\n						中文\n					</p>\n					<p class="caret">\n						<ion-icon ios="ios-arrow-forward" md="ios-arrow-forward"></ion-icon>\n					</p>\n				</ion-col>\n			</ion-row>\n		</div>\n		<!-- end of part 1 -->\n\n		<div class="part2" *ngIf="lang?.length > 0 && purchased && !postpurchase">\n			<span class="texter">\n				<p class="sm-txt">\n					Choose an occasion to win a\n				</p>\n				<p class="lrg-txt">\n					Polo Ralph Lauren<br/>\n					Wardrobe\n				</p>\n				<p class="sm-txt">\n					tailored for you specifically<br/>\n					for that event.\n				</p>\n			</span>\n			<ion-row>\n				<ion-col col-12 (tap)="toPassage()">\n					<p class="text">\n						PROCEED\n					</p>\n					<p class="caret">\n						<ion-icon ios="ios-arrow-forward" md="ios-arrow-forward"></ion-icon>\n					</p>\n				</ion-col>\n			</ion-row>\n		</div>\n		<!-- end of part 2 -->\n\n		 <div class="part2 unpurchased" *ngIf = "!purchased && !postpurchase">\n			\n			<span class="texter">\n				<p class="sm-txt">\n					Unlock an\n				</p>\n				<p class="lrg-txt">\n					Exclusive<br/>\n					Experience\n				</p>\n				<p class="sm-txt">\n					when you purchase this<br/>\n					classic fit polo shirt.\n				</p>\n			</span>\n			<ion-row>\n				<ion-col col-12>\n					<p class="text">\n						PROCEED TO OUR WEBSITE\n					</p>\n					<p class="caret">\n						<ion-icon ios="ios-arrow-forward" md="ios-arrow-forward"></ion-icon>\n					</p>\n				</ion-col>\n			</ion-row>\n		 </div>\n		<!-- end of unpurchased -->\n\n\n		 <div class="part2 postpurchase" *ngIf = "postpurchase">\n			\n			<span class="texter">\n				<p class="lrg-txt">\n					Congratulations\n				</p>\n				<p class="sm-txt">\n					on your ralph lauren purchase\n				</p>\n			</span>\n			<ion-row>\n				<ion-col col-12>\n					<p class="text">\n						PROCEED TO OUR WEBSITE\n					</p>\n					<p class="caret">\n						<ion-icon ios="ios-arrow-forward" md="ios-arrow-forward"></ion-icon>\n					</p>\n				</ion-col>\n			</ion-row>\n		 </div>\n		<!-- end of postpurchase -->\n\n	</section>\n</ion-content>\n'/*ion-inline-end:"/Users/raysantos/ralph-lauren-dev/ralph-lauren-dev/src/pages/home/home.html"*/
+            selector: 'page-home',template:/*ion-inline-start:"/Users/raysantos/ralph-lauren-dev/ralph-lauren-dev/src/pages/home/home.html"*/'<ion-content>\n	<img id="logo" src="../assets/imgs/Logo.svg"/>\n	<section class="main">\n	 <!-- [ngStyle]="{\'background-image\':\'url(\'+ss?.imgs[bgInd]+\')\'}" -->\n		<img class="bg" [src]="bg" [ngClass]="{\'blocked\':startSlides}"/>\n		<ion-slides autoplay="3000" loop="true" speed="2000" effect="fade" initialSlide="0" *ngIf="startSlides">\n			<!--  (ionSlideWillChange)="check($event)" -->\n			<ion-slide *ngFor="let img of ss?.imgs; let i = index;">\n				<img [src]="img">\n		    </ion-slide>\n		</ion-slides>\n		<div class="part1" *ngIf="lang?.length <= 0 && purchased && !postpurchase">\n			<p class="text-top">\n				Congratulations on your <br/>\n				polo ralph lauren purchase.\n			</p>\n\n			<h2 (tap)="launchSlides()">Welcome<br/>\n				<a class="small">歡迎</a>\n			</h2>\n			<ion-row>\n				<ion-col col-6 (tap)="proceedFlow(\'eng\')">\n					<p class="text">\n						ENGLISH\n					</p>\n					<p class="caret">\n						<ion-icon ios="ios-arrow-forward" md="ios-arrow-forward"></ion-icon>\n					</p>\n				</ion-col>\n				<ion-col col-6 (tap)="proceedFlow(\'pinyin\')">\n					<p class="text">\n						中文\n					</p>\n					<p class="caret">\n						<ion-icon ios="ios-arrow-forward" md="ios-arrow-forward"></ion-icon>\n					</p>\n				</ion-col>\n			</ion-row>\n		</div>\n		<!-- end of part 1 -->\n\n		<div class="part2" *ngIf="lang?.length > 0 && purchased && !postpurchase">\n			<span class="texter">\n				<p class="sm-txt">\n					Choose an occasion to win a\n				</p>\n				<p class="lrg-txt">\n					Polo Ralph Lauren<br/>\n					Wardrobe\n				</p>\n				<p class="sm-txt">\n					tailored for you specifically<br/>\n					for that event.\n				</p>\n			</span>\n			<ion-row>\n				<ion-col col-12 (tap)="toPassage()">\n					<p class="text">\n						PROCEED\n					</p>\n					<p class="caret">\n						<ion-icon ios="ios-arrow-forward" md="ios-arrow-forward"></ion-icon>\n					</p>\n				</ion-col>\n			</ion-row>\n		</div>\n		<!-- end of part 2 -->\n\n		 <div class="part2 unpurchased" *ngIf = "!purchased && !postpurchase">\n			\n			<span class="texter">\n				<p class="sm-txt">\n					Unlock an\n				</p>\n				<p class="lrg-txt">\n					Exclusive<br/>\n					Experience\n				</p>\n				<p class="sm-txt">\n					when you purchase this<br/>\n					classic fit polo shirt.\n				</p>\n			</span>\n			<ion-row>\n				<ion-col col-12>\n					<p class="text">\n						PROCEED TO OUR WEBSITE\n					</p>\n					<p class="caret">\n						<ion-icon ios="ios-arrow-forward" md="ios-arrow-forward"></ion-icon>\n					</p>\n				</ion-col>\n			</ion-row>\n		 </div>\n		<!-- end of unpurchased -->\n\n\n		 <div class="part2 postpurchase" *ngIf = "postpurchase">\n			\n			<span class="texter">\n				<p class="lrg-txt">\n					Congratulations\n				</p>\n				<p class="sm-txt">\n					on your ralph lauren purchase\n				</p>\n			</span>\n			<ion-row>\n				<ion-col col-12>\n					<p class="text">\n						PROCEED TO OUR WEBSITE\n					</p>\n					<p class="caret">\n						<ion-icon ios="ios-arrow-forward" md="ios-arrow-forward"></ion-icon>\n					</p>\n				</ion-col>\n			</ion-row>\n		 </div>\n		<!-- end of postpurchase -->\n\n	</section>\n</ion-content>\n'/*ion-inline-end:"/Users/raysantos/ralph-lauren-dev/ralph-lauren-dev/src/pages/home/home.html"*/,
+            providers: [__WEBPACK_IMPORTED_MODULE_2__providers_evt_evt__["a" /* EvtProvider */]]
         }),
-        __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */]) === "function" && _c || Object])
+        __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_2__providers_evt_evt__["a" /* EvtProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_evt_evt__["a" /* EvtProvider */]) === "function" && _d || Object])
     ], HomePage);
     return HomePage;
-    var _a, _b, _c;
+    var _a, _b, _c, _d;
 }());
 
 //# sourceMappingURL=home.js.map
@@ -384,13 +410,14 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(190);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_status_bar__ = __webpack_require__(193);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_evt_evt__ = __webpack_require__(272);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__app_component__ = __webpack_require__(275);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_home_home__ = __webpack_require__(194);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_registration_registration__ = __webpack_require__(196);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_thank_you2_thank_you2__ = __webpack_require__(198);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_thank_you_thank_you__ = __webpack_require__(197);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_wardrobe_wardrobe__ = __webpack_require__(195);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_passage_select_passage_select__ = __webpack_require__(276);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__angular_http__ = __webpack_require__(273);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__app_component__ = __webpack_require__(275);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_home_home__ = __webpack_require__(194);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_registration_registration__ = __webpack_require__(196);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_thank_you2_thank_you2__ = __webpack_require__(198);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_thank_you_thank_you__ = __webpack_require__(197);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_wardrobe_wardrobe__ = __webpack_require__(195);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_passage_select_passage_select__ = __webpack_require__(276);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -404,6 +431,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 // providers
 
+
 // pages
 
 
@@ -412,13 +440,13 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var pages = [__WEBPACK_IMPORTED_MODULE_6__app_component__["a" /* MyApp */],
-    __WEBPACK_IMPORTED_MODULE_7__pages_home_home__["a" /* HomePage */],
-    __WEBPACK_IMPORTED_MODULE_8__pages_registration_registration__["a" /* RegistrationPage */],
-    __WEBPACK_IMPORTED_MODULE_10__pages_thank_you_thank_you__["a" /* ThankYouPage */],
-    __WEBPACK_IMPORTED_MODULE_9__pages_thank_you2_thank_you2__["a" /* ThankYou2Page */],
-    __WEBPACK_IMPORTED_MODULE_11__pages_wardrobe_wardrobe__["a" /* WardrobePage */],
-    __WEBPACK_IMPORTED_MODULE_12__pages_passage_select_passage_select__["a" /* PassageSelectPage */]
+var pages = [__WEBPACK_IMPORTED_MODULE_7__app_component__["a" /* MyApp */],
+    __WEBPACK_IMPORTED_MODULE_8__pages_home_home__["a" /* HomePage */],
+    __WEBPACK_IMPORTED_MODULE_9__pages_registration_registration__["a" /* RegistrationPage */],
+    __WEBPACK_IMPORTED_MODULE_11__pages_thank_you_thank_you__["a" /* ThankYouPage */],
+    __WEBPACK_IMPORTED_MODULE_10__pages_thank_you2_thank_you2__["a" /* ThankYou2Page */],
+    __WEBPACK_IMPORTED_MODULE_12__pages_wardrobe_wardrobe__["a" /* WardrobePage */],
+    __WEBPACK_IMPORTED_MODULE_13__pages_passage_select_passage_select__["a" /* PassageSelectPage */]
 ];
 var AppModule = /** @class */ (function () {
     function AppModule() {
@@ -428,14 +456,15 @@ var AppModule = /** @class */ (function () {
             declarations: pages,
             imports: [
                 __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
-                __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["c" /* IonicModule */].forRoot(__WEBPACK_IMPORTED_MODULE_6__app_component__["a" /* MyApp */], {}, {
+                __WEBPACK_IMPORTED_MODULE_6__angular_http__["b" /* HttpModule */],
+                __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["c" /* IonicModule */].forRoot(__WEBPACK_IMPORTED_MODULE_7__app_component__["a" /* MyApp */], {}, {
                     links: [
-                        { component: __WEBPACK_IMPORTED_MODULE_7__pages_home_home__["a" /* HomePage */], name: 'Home', segment: 'home/:id' },
-                        { component: __WEBPACK_IMPORTED_MODULE_8__pages_registration_registration__["a" /* RegistrationPage */], name: 'RegistrationPage', segment: 'register' },
-                        { component: __WEBPACK_IMPORTED_MODULE_10__pages_thank_you_thank_you__["a" /* ThankYouPage */], name: 'ThankYouPage', segment: 'thank-you' },
-                        { component: __WEBPACK_IMPORTED_MODULE_9__pages_thank_you2_thank_you2__["a" /* ThankYou2Page */], name: 'ThankYou2Page', segment: 'thank-you-2' },
-                        { component: __WEBPACK_IMPORTED_MODULE_11__pages_wardrobe_wardrobe__["a" /* WardrobePage */], name: 'WardrobePage', segment: 'wardrobe' },
-                        { component: __WEBPACK_IMPORTED_MODULE_12__pages_passage_select_passage_select__["a" /* PassageSelectPage */], name: 'PassageSelectPage', segment: 'passage' }
+                        { component: __WEBPACK_IMPORTED_MODULE_8__pages_home_home__["a" /* HomePage */], name: 'Home', segment: 'home/:id' },
+                        { component: __WEBPACK_IMPORTED_MODULE_9__pages_registration_registration__["a" /* RegistrationPage */], name: 'RegistrationPage', segment: 'register' },
+                        { component: __WEBPACK_IMPORTED_MODULE_11__pages_thank_you_thank_you__["a" /* ThankYouPage */], name: 'ThankYouPage', segment: 'thank-you' },
+                        { component: __WEBPACK_IMPORTED_MODULE_10__pages_thank_you2_thank_you2__["a" /* ThankYou2Page */], name: 'ThankYou2Page', segment: 'thank-you-2' },
+                        { component: __WEBPACK_IMPORTED_MODULE_12__pages_wardrobe_wardrobe__["a" /* WardrobePage */], name: 'WardrobePage', segment: 'wardrobe' },
+                        { component: __WEBPACK_IMPORTED_MODULE_13__pages_passage_select_passage_select__["a" /* PassageSelectPage */], name: 'PassageSelectPage', segment: 'passage' }
                     ]
                 })
             ],
@@ -480,13 +509,42 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var EvtProvider = /** @class */ (function () {
     function EvtProvider(http) {
         this.http = http;
-        console.log(EVT);
+        this.evtApp = new EVT.App('lJmvgVe07ETx7FpanlxBvLIur1y65GKS6f3tNh6W5SsxP6PW6pYZ2a66wvhx7RlNuVDvPiW31EifI23l');
     }
+    EvtProvider.prototype.createUser = function (usr) {
+        return this.evtApp.appUser().create({
+            email: usr.email,
+            firstName: "test",
+            lastName: "test",
+            password: usr.pass
+        }).then(function (appUser) {
+            return appUser.validate();
+        }).catch(function (err) {
+            return err;
+        });
+    };
+    EvtProvider.prototype.getUserContext = function () {
+        var _this = this;
+        return (new Promise(function (resolve, reject) {
+            resolve(new EVT.User({
+                id: localStorage.evrythngUser,
+                apiKey: localStorage.evrythngApiKey
+            }, _this.evtApp));
+        }));
+    };
+    EvtProvider.prototype.scanThng = function (id) {
+        return this.getUserContext().then(function (user) {
+            return user.$init.then(function (usr) {
+                return usr.thng(id).read();
+            }).catch(console.info);
+        }).catch(console.info);
+    };
     EvtProvider = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Http */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Http */]) === "function" && _a || Object])
     ], EvtProvider);
     return EvtProvider;
+    var _a;
 }());
 
 //# sourceMappingURL=evt.js.map
