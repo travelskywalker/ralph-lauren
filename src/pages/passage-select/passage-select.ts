@@ -17,7 +17,7 @@ export class PassageSelectPage {
     console.log('ionViewDidLoad PassageSelectPage');
   }
 
-  choose(option:int){
+  choose(option:number){
   	this.navCtrl.push(WardrobePage,{activeSlide: option});
   }
 
