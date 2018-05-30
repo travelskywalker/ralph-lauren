@@ -83,11 +83,26 @@ page-registration {
 							padding-left:3vw;
 						}
 
+						select{
+							-webkit-appearance:none;
+							appearance:none;
+							-moz-appearance:none;
+						}
+
 						p{
 							width:100%;
 							text-align:center;
 						}
 
+						&.error{
+							input{
+								border: 1px solid red !important;
+							}
+							.label{
+								color: red !important;
+							}
+						}
+						
 					}
 				}
 

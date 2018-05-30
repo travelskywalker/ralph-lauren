@@ -13,7 +13,8 @@ import { PassageSelectPage } from '../passage-select/passage-select';
 export class HomePage {
 
 	ss: any = {};
-	bg:string = "../assets/imgs/bg-ender.jpg";
+	init_bg:string = "../assets/imgs/bg-ender.jpg";
+	bg:string = "";
 	startSlides:boolean = false;
 	resetFlag: boolean = false;
 	lang: string = '';
@@ -37,7 +38,7 @@ export class HomePage {
   					this.bg = "../assets/imgs/"+th.identifiers.sku+".jpg";
   					this.thngLoaded();
   				}
-  			})
+  			}).catch(console.info);
   		}).catch(console.info);
   	}else{
   		this.evt.scanThng(this.thngId).then(th=>{
@@ -45,7 +46,7 @@ export class HomePage {
   				this.bg = "../assets/imgs/"+th.identifiers.sku+".jpg";
   				this.thngLoaded();
   			}
-  		})
+  		}).catch(console.info);
 
   	}
   }
@@ -55,12 +56,13 @@ export class HomePage {
 
   	let imgld = new Image;
   	imgld.onload = function(){
+  		self.resetFlag = true;	//remove the placeholder img
 	  	setTimeout(()=>{
 	  		self.launchSlides();
-	  	},2000);
+	  	},3000);
   	}
 
-  	imgld.src = this.bg;
+  	imgld.src = this.bg;	//set the product's image
   }
 
   ionViewDidEnter(){
@@ -73,21 +75,14 @@ export class HomePage {
   launchSlides(){
   	let preload = localStorage.preload.split(",");
   	this.ss.imgs = this.ss.imgs.concat(preload);
-  	this.startSlides = true;
   	this.timeout = setTimeout(()=>{
+  		this.startSlides = true;	//start the slides
   		try{
   			this.slider.autoplay = 2000;
   		}catch(e){
   			console.info(e);
   		}
-  	},500);
-  }
-
-  check($event){
-  	if(this.resetFlag) return ;
-	if($event.realIndex == 0){
-
-	}
+  	},1000);
   }
 
   proceedFlow(lang){

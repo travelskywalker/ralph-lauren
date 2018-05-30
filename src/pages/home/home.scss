@@ -32,6 +32,9 @@ page-home {
 				}
 
 				img.bg{
+					&.init{
+						z-index:2;
+					}
 					position:absolute;
 					display:block;
 					height:100%;
