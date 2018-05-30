@@ -43,13 +43,13 @@ export class RegistrationPage {
     let validation = this.validate(this.userData);
 
     if(!validation.valid){
-      if(validation.error.hasOwnProperty('lastname')){
+      if(validation.error.includes('lastname')){
         this.errorClass_lastname = 'error';
       }else{
         this.errorClass_lastname = '';
       }
       
-      if(validation.error.hasOwnProperty('email')){
+      if(validation.error.includes('email')){
         this.errorClass_email = 'error';
       }else{
         this.errorClass_email = '';
