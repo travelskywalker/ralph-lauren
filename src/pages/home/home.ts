@@ -66,6 +66,9 @@ export class HomePage {
 
   proceedFlow(lang){
   	this.lang = lang;
+  }
+
+  toPassage(){
   	this.navCtrl.setRoot(WardrobePage);
   }
 
