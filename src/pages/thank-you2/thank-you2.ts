@@ -1,5 +1,5 @@
-import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams, Menu } from 'ionic-angular';
+import { Component } from '@angular/core';
+import { IonicPage, NavController } from 'ionic-angular';
 
 /**
  * Generated class for the ThankYou2Page page.
@@ -15,29 +15,19 @@ import { IonicPage, NavController, NavParams, Menu } from 'ionic-angular';
 })
 export class ThankYou2Page {
 
-	salutation:string = "Mr.";
+	salutation:string = "mr";
 	name:string = "Maya";
-	@ViewChild(Menu) menu: Menu;
-
-	filled:string = "../assets/imgs/star-filled.svg";
-	empty:string = "../assets/imgs/star-empty.svg";
-
-	scores : {q1:number,q2:number,q3:number} = {q1:0,q2:0,q3:0};
-
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController) {
   }
 
   ngAfterViewInit(){
-  	console.log(this.menu);
+  	let dt = JSON.parse(localStorage.userData);
+  	this.salutation = dt.gender;
+  	this.name = dt.lastName;
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ThankYou2Page');
-  }
-
-  setScore(text:string,score:number){
-  	this.scores[text] = score;
-  	console.log(this.scores);
   }
 
 }

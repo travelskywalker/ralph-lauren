@@ -15,9 +15,11 @@
 				polo ralph lauren purchase.
 			</p>
 
-			<h2 (click)="launchSlides()">Welcome</h2>
+			<h2 (tap)="launchSlides()">Welcome<br/>
+				<a class="small">歡迎</a>
+			</h2>
 			<ion-row>
-				<ion-col col-6 (click)="proceedFlow('eng')">
+				<ion-col col-6 (tap)="proceedFlow('eng')">
 					<p class="text">
 						ENGLISH
 					</p>
@@ -25,9 +27,9 @@
 						<ion-icon ios="ios-arrow-forward" md="ios-arrow-forward"></ion-icon>
 					</p>
 				</ion-col>
-				<ion-col col-6 (click)="proceedFlow('pinyin')">
+				<ion-col col-6 (tap)="proceedFlow('pinyin')">
 					<p class="text">
-						漢語
+						中文
 					</p>
 					<p class="caret">
 						<ion-icon ios="ios-arrow-forward" md="ios-arrow-forward"></ion-icon>
@@ -52,7 +54,7 @@
 				</p>
 			</span>
 			<ion-row>
-				<ion-col col-12 (click)="proceedFlow('eng')">
+				<ion-col col-12 (tap)="proceedFlow('eng')">
 					<p class="text">
 						PROCEED
 					</p>
