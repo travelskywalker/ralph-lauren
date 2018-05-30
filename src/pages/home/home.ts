@@ -1,7 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { NavController, NavParams, Slides } from 'ionic-angular';
 
-import { WardrobePage } from '../wardrobe/wardrobe';
+import { PassageSelectPage } from '../passage-select/passage-select';
 
 @Component({
   selector: 'page-home',
@@ -69,7 +69,7 @@ export class HomePage {
   }
 
   toPassage(){
-  	this.navCtrl.setRoot(WardrobePage);
+  	this.navCtrl.setRoot(PassageSelectPage);
   }
 
 }
