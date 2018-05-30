@@ -1,3 +1,19 @@
 page-passage-select {
+	ion-content{
+		background:url("../assets/imgs/passages/BGPassageSelection.jpg");
+		background-size: cover !important;
+		background-position: center !important;
+	}
 
+	.main {
+	    color: #ffffff;
+	    text-transform: uppercase;
+	    margin-top: 6vh;
+	    height: calc(100vh - 6vh);
+	}
+
+	ion-row {
+	    height: 20%;
+	    text-align: center;
+	}
 }
