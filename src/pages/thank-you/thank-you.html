@@ -1,4 +1,4 @@
-<ion-menu [content]="mycontent" side="right" type="push" enabled="true">
+<ion-menu [content]="mycontent" side="right" type="push" enabled="true" swipeEnabled="false">
 	<ion-content>
 		<img id="logo" src="../assets/imgs/Logo.svg"/>
 		<section class="body">
@@ -11,33 +11,23 @@
 				</p>
 				<span class="stars">
 					<div class="star">
-						<button ion-button (tap)="setScore('q1',1)" >
-							<img [src]="(scores?.q1<=0 ? empty : filled)"/>
-						</button>
+						<img (tap)="setScore('q1',1)" [src]="(scores?.q1<=0 ? empty : filled)"/>
 					</div>
 
 					<div class="star">
-						<button ion-button (tap)="setScore('q1',2)">
-							<img [src]="(scores?.q1>=2 ? filled : empty)"/>
-						</button>
+						<img (tap)="setScore('q1',2)" [src]="(scores?.q1>=2 ? filled : empty)"/>
 					</div>
 
 					<div class="star">
-						<button ion-button (tap)="setScore('q1',3)">
-							<img [src]="(scores?.q1>=3 ? filled : empty)"/>
-						</button>
+						<img (tap)="setScore('q1',3)" [src]="(scores?.q1>=3 ? filled : empty)"/>
 					</div>
 
 					<div class="star">
-						<button ion-button (tap)="setScore('q1',4)">
-							<img [src]="(scores?.q1>=4 ? filled : empty)"/>
-						</button>
+						<img (tap)="setScore('q1',4)" [src]="(scores?.q1>=4 ? filled : empty)"/>
 					</div>
 
 					<div class="star">
-						<button ion-button (tap)="setScore('q1',5)">
-							<img [src]="(scores?.q1>=5 ? filled : empty)"/>
-						</button>
+						<img (tap)="setScore('q1',5)" [src]="(scores?.q1>=5 ? filled : empty)"/>
 					</div>
 				</span>
 			</span>
@@ -51,33 +41,23 @@
 				</p>
 				<span class="stars">
 					<div class="star">
-						<button ion-button (tap)="setScore('q2',1)" >
-							<img [src]="(scores?.q2<=0 ? empty : filled)"/>
-						</button>
+						<img (tap)="setScore('q2',1)" [src]="(scores?.q2<=0 ? empty : filled)"/>
 					</div>
 
 					<div class="star">
-						<button ion-button (tap)="setScore('q2',2)">
-							<img [src]="(scores?.q2>=2 ? filled : empty)"/>
-						</button>
+						<img (tap)="setScore('q2',2)" [src]="(scores?.q2>=2 ? filled : empty)"/>
 					</div>
 
 					<div class="star">
-						<button ion-button (tap)="setScore('q2',3)">
-							<img [src]="(scores?.q2>=3 ? filled : empty)"/>
-						</button>
+						<img (tap)="setScore('q2',3)" [src]="(scores?.q2>=3 ? filled : empty)"/>
 					</div>
 
 					<div class="star">
-						<button ion-button (tap)="setScore('q2',4)">
-							<img [src]="(scores?.q2>=4 ? filled : empty)"/>
-						</button>
+						<img (tap)="setScore('q2',4)" [src]="(scores?.q2>=4 ? filled : empty)"/>
 					</div>
 
 					<div class="star">
-						<button ion-button (tap)="setScore('q2',5)">
-							<img [src]="(scores?.q2>=5 ? filled : empty)"/>
-						</button>
+						<img (tap)="setScore('q2',5)" [src]="(scores?.q2>=5 ? filled : empty)"/>
 					</div>
 				</span>
 			</span>
@@ -90,33 +70,23 @@
 				</p>
 				<span class="stars">
 					<div class="star">
-						<button ion-button (tap)="setScore('q3',1)" >
-							<img [src]="(scores?.q3<=0 ? empty : filled)"/>
-						</button>
+						<img (tap)="setScore('q3',1)" [src]="(scores?.q3<=0 ? empty : filled)"/>
 					</div>
 
 					<div class="star">
-						<button ion-button (tap)="setScore('q3',2)">
-							<img [src]="(scores?.q3>=2 ? filled : empty)"/>
-						</button>
+						<img (tap)="setScore('q3',2)" [src]="(scores?.q3>=2 ? filled : empty)"/>
 					</div>
 
 					<div class="star">
-						<button ion-button (tap)="setScore('q3',3)">
-							<img [src]="(scores?.q3>=3 ? filled : empty)"/>
-						</button>
+						<img (tap)="setScore('q3',3)" [src]="(scores?.q3>=3 ? filled : empty)"/>
 					</div>
 
 					<div class="star">
-						<button ion-button (tap)="setScore('q3',4)">
-							<img [src]="(scores?.q3>=4 ? filled : empty)"/>
-						</button>
+						<img (tap)="setScore('q3',4)" [src]="(scores?.q3>=4 ? filled : empty)"/>
 					</div>
 
 					<div class="star">
-						<button ion-button (tap)="setScore('q3',5)">
-							<img [src]="(scores?.q3>=5 ? filled : empty)"/>
-						</button>
+						<img (tap)="setScore('q3',5)" [src]="(scores?.q3>=5 ? filled : empty)"/>
 					</div>
 				</span>
 			</span>

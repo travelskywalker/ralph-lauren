@@ -26029,7 +26029,7 @@ page-registration ion-content .scroll-content section.form ion-row ion-col selec
   border: 1px solid #fff;
   border-radius: 0;
   display: inline-block;
-  height: 5vh;
+  height: 9vw;
   min-width: 100%;
   position: relative;
   z-index: 2;
@@ -26093,7 +26093,6 @@ page-thank-you ion-menu ion-content .scroll-content section.body {
 }
 
 page-thank-you ion-menu ion-content .scroll-content section.body hr {
-  height: 0.15rem;
   margin: 0 auto 5vh;
   background-color: #fff;
   width: 20vw;
@@ -26104,7 +26103,7 @@ page-thank-you ion-menu ion-content .scroll-content section.body p.question {
   color: #fff;
   text-align: center;
   padding: 0.5rem 2rem;
-  font-size: 2.5vh;
+  font-size: 2.75vh;
 }
 
 page-thank-you ion-menu ion-content .scroll-content section.body span.item {
@@ -26121,7 +26120,7 @@ page-thank-you ion-menu ion-content .scroll-content section.body span.item p.que
 }
 
 page-thank-you ion-menu ion-content .scroll-content section.body span.item span.stars {
-  margin: 3vh auto;
+  margin: 2.8vh auto 2.2vh;
   white-space: nowrap;
   width: 100%;
   position: relative;
@@ -26132,28 +26131,17 @@ page-thank-you ion-menu ion-content .scroll-content section.body span.item span.
 
 page-thank-you ion-menu ion-content .scroll-content section.body span.item span.stars div.star {
   position: relative;
-  display: inline-table;
+  display: inline-block;
   width: 6.5vh;
   height: 6.5vh;
   margin: 0 0.5vw;
-}
-
-page-thank-you ion-menu ion-content .scroll-content section.body span.item span.stars div.star button {
-  margin: 0;
-  padding: 0;
   background: transparent;
-  height: 100%;
-  width: 100%;
-  display: block;
   -webkit-box-shadow: none;
   box-shadow: none;
+  padding: 0.5rem;
 }
 
-page-thank-you ion-menu ion-content .scroll-content section.body span.item span.stars div.star button span {
-  padding: 0.3rem;
-}
-
-page-thank-you ion-menu ion-content .scroll-content section.body span.item span.stars div.star button span img {
+page-thank-you ion-menu ion-content .scroll-content section.body span.item span.stars div.star img {
   -o-object-fit: cover;
   object-fit: cover;
   width: 100%;
@@ -26163,7 +26151,7 @@ page-thank-you ion-menu ion-content .scroll-content section.body ion-row.footer 
   position: relative;
   clear: both;
   width: 100%;
-  margin: auto;
+  margin: 3vh auto 0;
 }
 
 page-thank-you ion-menu ion-content .scroll-content section.body ion-row.footer p {
@@ -26233,8 +26221,8 @@ page-thank-you2 > ion-content > .scroll-content p.content {
   margin: 0;
   text-align: center;
   display: block;
-  font-size: 2.75vh;
-  padding: 35vh 5vw 0;
+  font-size: 2.95vh;
+  padding: 30vh 7.5vw 0;
 }
 
 page-thank-you2 > ion-content > .scroll-content p.content a.cap {
