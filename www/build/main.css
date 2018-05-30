@@ -26041,6 +26041,14 @@ page-registration ion-content .scroll-content section.form ion-row ion-col p {
   text-align: center;
 }
 
+page-registration ion-content .scroll-content section.form ion-row ion-col.error input {
+  border: 1px solid red !important;
+}
+
+page-registration ion-content .scroll-content section.form ion-row ion-col.error .label {
+  color: red !important;
+}
+
 page-registration ion-content .scroll-content section.form ion-row.footer {
   position: relative;
   clear: both;

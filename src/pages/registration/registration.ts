@@ -1,14 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
-// import { ThankYouPage } from '../thank-you/thank-you';
-
-/**
- * Generated class for the RegistrationPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { ThankYouPage } from '../thank-you/thank-you';
 
  export interface user {
  	email:string,
@@ -36,50 +29,70 @@ export class RegistrationPage {
 
 	userData:user = {email:"",lastName:"",gender:"mr",age:"2636"};
 	fittings:measurements = {top:"L",pants:33,shoe:7.5};
+
+  errorClass_lastname: string = '';
+  errorClass_email: string = '';
+
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad RegistrationPage');
   }
 
   proceed(){
-    // validate form
-    console.log(this.validate(this.userData));
+    let validation = this.validate(this.userData);
 
-  	//submit form
-  	// localStorage.userData = JSON.stringify(this.userData);
-  	// localStorage.fittings = JSON.stringify(this.fittings);
+    if(!validation.valid){
+      if(validation.error.includes('lastname')){
+        this.errorClass_lastname = 'error';
+      }else{
+        this.errorClass_lastname = '';
+      }
+      
+      if(validation.error.includes('email')){
+        this.errorClass_email = 'error';
+      }else{
+        this.errorClass_email = '';
+      }
+        
+    }else{
 
+    	// submit form
+    	localStorage.userData = JSON.stringify(this.userData);
+    	localStorage.fittings = JSON.stringify(this.fittings);
 
-
-  	// this.navCtrl.setRoot(ThankYouPage);
+    	this.navCtrl.setRoot(ThankYouPage);
+    }
+      
   }
 
   validate(data: any){
     var lastname;
     var email;
+    var error = [];
 
     if(data.lastName != ''){
       lastname = true;
     }else{
       lastname = false;
+      error.push('lastname');
     }
 
-    if(data.email != ''){
+    var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,6})+$/;
+
+    if (filter.test(data.email)) {
       email = true;
-    }else{
+    }
+    else {
       email = false;
+      error.push('email');
     }
 
-
-    if(lastname && email)
-      return true;
+    if((lastname == false && email == false) || (lastname == false || email == false) )
+      return {valid: false, error: error};
     else{
-      return false;
+      return {valid: true};
     }
   }
-
-
 
 }

@@ -239,6 +239,7 @@ var WardrobePage = /** @class */ (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RegistrationPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__thank_you_thank_you__ = __webpack_require__(198);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -248,6 +249,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+
 
 
 ;
@@ -261,42 +263,62 @@ var RegistrationPage = /** @class */ (function () {
         this.shoeSizes = [5, 5.5, 6, 6.5, 7, 7.5, 8, 8.5, 9, 9.5, 10, 10.5, 11, 11.5, 12, 12.5, 13];
         this.userData = { email: "", lastName: "", gender: "mr", age: "2636" };
         this.fittings = { top: "L", pants: 33, shoe: 7.5 };
+        this.errorClass_lastname = '';
+        this.errorClass_email = '';
     }
     RegistrationPage.prototype.ionViewDidLoad = function () {
-        console.log('ionViewDidLoad RegistrationPage');
     };
     RegistrationPage.prototype.proceed = function () {
-        // validate form
-        console.log(this.validate(this.userData));
-        //submit form
-        // localStorage.userData = JSON.stringify(this.userData);
-        // localStorage.fittings = JSON.stringify(this.fittings);
-        // this.navCtrl.setRoot(ThankYouPage);
+        var validation = this.validate(this.userData);
+        if (!validation.valid) {
+            if (validation.error.includes('lastname')) {
+                this.errorClass_lastname = 'error';
+            }
+            else {
+                this.errorClass_lastname = '';
+            }
+            if (validation.error.includes('email')) {
+                this.errorClass_email = 'error';
+            }
+            else {
+                this.errorClass_email = '';
+            }
+        }
+        else {
+            // submit form
+            localStorage.userData = JSON.stringify(this.userData);
+            localStorage.fittings = JSON.stringify(this.fittings);
+            this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_2__thank_you_thank_you__["a" /* ThankYouPage */]);
+        }
     };
     RegistrationPage.prototype.validate = function (data) {
         var lastname;
         var email;
+        var error = [];
         if (data.lastName != '') {
             lastname = true;
         }
         else {
             lastname = false;
+            error.push('lastname');
         }
-        if (data.email != '') {
+        var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,6})+$/;
+        if (filter.test(data.email)) {
             email = true;
         }
         else {
             email = false;
+            error.push('email');
         }
-        if (lastname && email)
-            return true;
+        if ((lastname == false && email == false) || (lastname == false || email == false))
+            return { valid: false, error: error };
         else {
-            return false;
+            return { valid: true };
         }
     };
     RegistrationPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-registration',template:/*ion-inline-start:"/Users/lei/Documents/projects/dummyapp/rl-app/src/pages/registration/registration.html"*/'<!--\n  Generated template for the RegistrationPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n\n<ion-content>\n	<img id="logo" src="../assets/imgs/Logo.svg"/>\n	<section class="form">\n		<p class="title-top">\n			a few details please?<br/>\n			it will be kept confidential\n		</p>\n\n		<ion-row>\n			<ion-col col-4>\n				<a class="label">\n					title\n				</a>\n				<span class="select-container">\n					<select name="gender" [(ngModel)] = "userData.gender">\n						<option value="mr">Mr.</option>\n						<option value="ms">Ms.</option>\n					</select>\n					<ion-icon ios="ios-arrow-down" md="ios-arrow-down"></ion-icon>\n				</span>\n			</ion-col>\n			<ion-col col-8>\n				<a class="label">\n					surname\n				</a>\n				<input type="text" name="surname" [(ngModel)] = "userData.lastName"/>\n			</ion-col>\n		</ion-row>\n\n		<ion-row>\n			<ion-col col-12>\n				<a class="label">\n					email\n				</a>\n				<input type="email" name="email" [(ngModel)] = "userData.email"/>\n			</ion-col>\n		</ion-row>\n\n		<ion-row>\n			<ion-col col-12>\n				<a class="label">\n					age range\n				</a>\n				<span class="select-container">\n					<select name="agerange"  [(ngModel)] = "userData.age">\n						<option value="2636">26 - 36 years old</option>\n						<option value="3747">37 - 47 years old</option>\n						<option value="4858">48 - 58 years old</option>\n					</select>\n					<ion-icon ios="ios-arrow-down" md="ios-arrow-down"></ion-icon>\n				</span>\n			</ion-col>\n		</ion-row>\n\n		<ion-row>\n			<ion-col col-12>\n				<p>fitting details</p>\n			</ion-col>\n		</ion-row>\n\n		<ion-row>\n			<ion-col col-4>\n				<a class="label">\n					top size\n				</a>\n				<span class="select-container">\n					<select name="topsize" [(ngModel)] = "fittings.top">\n						<option *ngFor = "let ts of topSizes" value="{{ts}}">{{ts}}</option>\n					</select>\n					<ion-icon ios="ios-arrow-down" md="ios-arrow-down"></ion-icon>\n				</span>\n			</ion-col>\n			<ion-col col-4>\n				<a class="label">\n					pants size\n				</a>\n				<span class="select-container">\n					<select name="pantssize" [(ngModel)] = "fittings.pants">\n						<option *ngFor = "let ps of pantsSizes" value="{{ps}}">{{ps}}"</option>\n					</select>\n					<ion-icon ios="ios-arrow-down" md="ios-arrow-down"></ion-icon>\n				</span>\n			</ion-col>\n			<ion-col col-4>\n				<a class="label">\n					shoe size\n				</a>\n				<span class="select-container">\n					<select name="shoesize" [(ngModel)] = "fittings.shoe">\n						<option *ngFor = "let ss of shoeSizes" value="{{ss}}">{{ss}} US</option>\n					</select>\n					<ion-icon ios="ios-arrow-down" md="ios-arrow-down"></ion-icon>\n				</span>\n			</ion-col>\n		</ion-row>\n\n		<p class="note-bottom">\n			By tapping submit, you confirm that you <br/>\n			have read and agreed to the <a class="link" href="">Terms and Conditions</a>\n		</p>\n\n\n			<ion-row class="footer">\n				<ion-col col-12 (tap)="proceed()">\n					<p class="text">\n						SUBMIT\n					</p>\n					<p class="caret">\n						<ion-icon ios="ios-arrow-forward" md="ios-arrow-forward"></ion-icon>\n					</p>\n				</ion-col>\n			</ion-row>\n		\n	</section>\n</ion-content>\n'/*ion-inline-end:"/Users/lei/Documents/projects/dummyapp/rl-app/src/pages/registration/registration.html"*/,
+            selector: 'page-registration',template:/*ion-inline-start:"/Users/lei/Documents/projects/dummyapp/rl-app/src/pages/registration/registration.html"*/'<!--\n  Generated template for the RegistrationPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n\n<ion-content>\n	<img id="logo" src="../assets/imgs/Logo.svg"/>\n	<section class="form">\n		<p class="title-top">\n			a few details please?<br/>\n			it will be kept confidential\n		</p>\n\n		<ion-row>\n			<ion-col col-4>\n				<a class="label">\n					title\n				</a>\n				<span class="select-container">\n					<select name="gender" [(ngModel)] = "userData.gender">\n						<option value="mr">Mr.</option>\n						<option value="ms">Ms.</option>\n					</select>\n					<ion-icon ios="ios-arrow-down" md="ios-arrow-down"></ion-icon>\n				</span>\n			</ion-col>\n			<ion-col col-8 [class]="errorClass_lastname">\n				<a class="label" >\n					surname\n				</a>\n				<input type="text" name="surname" [(ngModel)] = "userData.lastName"/>\n			</ion-col>\n		</ion-row>\n\n		<ion-row>\n			<ion-col col-12 [class]="errorClass_email">\n				<a class="label">\n					email\n				</a>\n				<input type="email" name="email" [(ngModel)] = "userData.email"/>\n			</ion-col>\n		</ion-row>\n\n		<ion-row>\n			<ion-col col-12>\n				<a class="label">\n					age range\n				</a>\n				<span class="select-container">\n					<select name="agerange"  [(ngModel)] = "userData.age">\n						<option value="2636">26 - 36 years old</option>\n						<option value="3747">37 - 47 years old</option>\n						<option value="4858">48 - 58 years old</option>\n					</select>\n					<ion-icon ios="ios-arrow-down" md="ios-arrow-down"></ion-icon>\n				</span>\n			</ion-col>\n		</ion-row>\n\n		<ion-row>\n			<ion-col col-12>\n				<p>fitting details</p>\n			</ion-col>\n		</ion-row>\n\n		<ion-row>\n			<ion-col col-4>\n				<a class="label">\n					top size\n				</a>\n				<span class="select-container">\n					<select name="topsize" [(ngModel)] = "fittings.top">\n						<option *ngFor = "let ts of topSizes" value="{{ts}}">{{ts}}</option>\n					</select>\n					<ion-icon ios="ios-arrow-down" md="ios-arrow-down"></ion-icon>\n				</span>\n			</ion-col>\n			<ion-col col-4>\n				<a class="label">\n					pants size\n				</a>\n				<span class="select-container">\n					<select name="pantssize" [(ngModel)] = "fittings.pants">\n						<option *ngFor = "let ps of pantsSizes" value="{{ps}}">{{ps}}"</option>\n					</select>\n					<ion-icon ios="ios-arrow-down" md="ios-arrow-down"></ion-icon>\n				</span>\n			</ion-col>\n			<ion-col col-4>\n				<a class="label">\n					shoe size\n				</a>\n				<span class="select-container">\n					<select name="shoesize" [(ngModel)] = "fittings.shoe">\n						<option *ngFor = "let ss of shoeSizes" value="{{ss}}">{{ss}} US</option>\n					</select>\n					<ion-icon ios="ios-arrow-down" md="ios-arrow-down"></ion-icon>\n				</span>\n			</ion-col>\n		</ion-row>\n\n		<p class="note-bottom">\n			By tapping submit, you confirm that you <br/>\n			have read and agreed to the <a class="link" href="">Terms and Conditions</a>\n		</p>\n\n\n			<ion-row class="footer">\n				<ion-col col-12 (tap)="proceed()">\n					<p class="text">\n						SUBMIT\n					</p>\n					<p class="caret">\n						<ion-icon ios="ios-arrow-forward" md="ios-arrow-forward"></ion-icon>\n					</p>\n				</ion-col>\n			</ion-row>\n		\n	</section>\n</ion-content>\n'/*ion-inline-end:"/Users/lei/Documents/projects/dummyapp/rl-app/src/pages/registration/registration.html"*/,
         }),
         __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */]) === "function" && _b || Object])
     ], RegistrationPage);

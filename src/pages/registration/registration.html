@@ -26,8 +26,8 @@
 					<ion-icon ios="ios-arrow-down" md="ios-arrow-down"></ion-icon>
 				</span>
 			</ion-col>
-			<ion-col col-8>
-				<a class="label">
+			<ion-col col-8 [class]="errorClass_lastname">
+				<a class="label" >
 					surname
 				</a>
 				<input type="text" name="surname" [(ngModel)] = "userData.lastName"/>
@@ -35,7 +35,7 @@
 		</ion-row>
 
 		<ion-row>
-			<ion-col col-12>
+			<ion-col col-12 [class]="errorClass_email">
 				<a class="label">
 					email
 				</a>

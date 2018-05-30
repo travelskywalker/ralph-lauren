@@ -88,6 +88,15 @@ page-registration {
 							text-align:center;
 						}
 
+						&.error{
+							input{
+								border: 1px solid red !important;
+							}
+							.label{
+								color: red !important;
+							}
+						}
+						
 					}
 				}
 
