@@ -13,6 +13,7 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { RegistrationPage } from '../pages/registration/registration';
 import { ThankYou2Page } from '../pages/thank-you2/thank-you2';
+import { ThankYouPage } from '../pages/thank-you/thank-you';
 import { WardrobePage } from '../pages/wardrobe/wardrobe';
 
 
@@ -20,6 +21,7 @@ import { WardrobePage } from '../pages/wardrobe/wardrobe';
 const pages = [ MyApp,
       HomePage,
       RegistrationPage,
+      ThankYouPage,
       ThankYou2Page,
       WardrobePage
       ];
@@ -32,6 +34,7 @@ const pages = [ MyApp,
       links: [
         { component: HomePage, name: 'Home', segment: 'home/:id' },
         { component: RegistrationPage, name: 'RegistrationPage', segment: 'register' },
+        { component: ThankYouPage, name: 'ThankYouPage', segment: 'thank-you' },
         { component: ThankYou2Page, name: 'ThankYou2Page', segment: 'thank-you-2' },
         { component: WardrobePage, name: 'WardrobePage', segment: 'wardrobe' }
       ]

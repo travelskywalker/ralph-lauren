@@ -7,7 +7,7 @@
 				<h2>Sunday<br>Beach Classics</h2>
 			</div>
 			<div class="navigation">
-				<p>
+				<p (tap)="choose('sunday-beach')">
 					SELECT<br>
 					<ion-icon name="ios-arrow-forward"></ion-icon>
 				</p>
@@ -20,7 +20,7 @@
 				<h2>Opening<br>Night Mod</h2>
 			</div>
 			<div class="navigation">
-				<p>
+				<p (tap)="choose('opening-night')">
 					SELECT<br>
 					<ion-icon name="ios-arrow-forward"></ion-icon>
 				</p>
@@ -33,7 +33,7 @@
 				<h2>A Casual<br>Chic Holiday</h2>
 			</div>
 			<div class="navigation">
-				<p>
+				<p (tap)="choose('casual-chic')">
 					SELECT<br>
 					<ion-icon name="ios-arrow-forward"></ion-icon>
 				</p>
@@ -46,7 +46,7 @@
 				<h2>Explorers of<br>Leisure</h2>
 			</div>
 			<div class="navigation">
-				<p class="text">SELECT</p>
+				<p class="text" (tap)="choose('explorers-leisure')">SELECT</p>
 				<p class="caret" ><ion-icon name="ios-arrow-forward"></ion-icon> </p>
 			</div>
 		  </div>
@@ -57,7 +57,7 @@
 				<h2>A Professional<br>Fit</h2>
 			</div>
 			<div class="navigation">
-				<p>
+				<p (tap)="choose('professional-fit')">
 					SELECT<br>
 					<ion-icon name="ios-arrow-forward"></ion-icon>
 				</p>
