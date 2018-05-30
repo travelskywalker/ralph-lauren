@@ -1,14 +1,7 @@
-import { Component,ElementRef } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Component,ElementRef, ViewChild } from '@angular/core';
+import { IonicPage, NavController, NavParams, Slides } from 'ionic-angular';
 
 import { RegistrationPage } from '../registration/registration';
-
-/**
- * Generated class for the WardrobePage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -16,6 +9,8 @@ import { RegistrationPage } from '../registration/registration';
   templateUrl: 'wardrobe.html',
 })
 export class WardrobePage {
+
+@ViewChild(Slides) slides: Slides;
 
 	selection = {
 					"sunday-beach":"../assets/imgs/passages/BGSundayBeachClassics.jpg",
@@ -31,6 +26,11 @@ export class WardrobePage {
 
   ionViewDidLoad() {
   }
+
+  ionViewWillEnter(){
+	   var activeSlide = this.navParams.get("activeSlide");
+	   this.slides.slideTo(activeSlide);
+	}
 
   ngOnInit(){
 

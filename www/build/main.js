@@ -146,12 +146,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-/**
- * Generated class for the WardrobePage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 var WardrobePage = /** @class */ (function () {
     function WardrobePage(navCtrl, navParams, myElement) {
         this.navCtrl = navCtrl;
@@ -167,19 +161,28 @@ var WardrobePage = /** @class */ (function () {
     }
     WardrobePage.prototype.ionViewDidLoad = function () {
     };
+    WardrobePage.prototype.ionViewWillEnter = function () {
+        var activeSlide = this.navParams.get("activeSlide");
+        this.slides.slideTo(activeSlide);
+    };
     WardrobePage.prototype.ngOnInit = function () {
     };
     WardrobePage.prototype.choose = function (garment) {
         localStorage.wardrobe = this.selection[garment];
         this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_2__registration_registration__["a" /* RegistrationPage */]);
     };
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_8" /* ViewChild */])(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* Slides */]),
+        __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* Slides */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* Slides */]) === "function" && _a || Object)
+    ], WardrobePage.prototype, "slides", void 0);
     WardrobePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'page-wardrobe',template:/*ion-inline-start:"/Users/lei/Documents/projects/dummyapp/rl-app/src/pages/wardrobe/wardrobe.html"*/'<ion-content >\n	<img id="logo" src="../assets/imgs/Logo.svg"/>\n	<ion-slides pager direction="vertical">\n\n	  <ion-slide class="passage1">\n	      <div class="segment">\n			<div class="content vertical-center">\n				<h2>Sunday<br>Beach Classics</h2>\n			</div>\n			<div class="navigation">\n				<p (tap)="choose(\'sunday-beach\')">\n					SELECT<br>\n					<ion-icon name="ios-arrow-forward"></ion-icon>\n				</p>\n			</div>\n		  </div>\n	  </ion-slide>\n	  <ion-slide class="passage2">\n	      <div class="segment">\n			<div class="content vertical-center">\n				<h2>Opening<br>Night Mod</h2>\n			</div>\n			<div class="navigation">\n				<p (tap)="choose(\'opening-night\')">\n					SELECT<br>\n					<ion-icon name="ios-arrow-forward"></ion-icon>\n				</p>\n			</div>\n		  </div>\n	  </ion-slide>\n	  <ion-slide class="passage3">\n	      <div class="segment">\n			<div class="content vertical-center">\n				<h2>A Casual<br>Chic Holiday</h2>\n			</div>\n			<div class="navigation">\n				<p (tap)="choose(\'casual-chic\')">\n					SELECT<br>\n					<ion-icon name="ios-arrow-forward"></ion-icon>\n				</p>\n			</div>\n		  </div>\n	  </ion-slide>\n	  <ion-slide class="passage4">\n	      <div class="segment">\n			<div class="content vertical-center">\n				<h2>Explorers of<br>Leisure</h2>\n			</div>\n			<div class="navigation">\n				<p class="text" (tap)="choose(\'explorers-leisure\')">SELECT</p>\n				<p class="caret" ><ion-icon name="ios-arrow-forward"></ion-icon> </p>\n			</div>\n		  </div>\n	  </ion-slide>\n	  <ion-slide class="passage5">\n	      <div class="segment">\n			<div class="content vertical-center">\n				<h2>A Professional<br>Fit</h2>\n			</div>\n			<div class="navigation">\n				<p (tap)="choose(\'professional-fit\')">\n					SELECT<br>\n					<ion-icon name="ios-arrow-forward"></ion-icon>\n				</p>\n			</div>\n		  </div>\n	  </ion-slide>\n\n	 </ion-slides>\n</ion-content>\n'/*ion-inline-end:"/Users/lei/Documents/projects/dummyapp/rl-app/src/pages/wardrobe/wardrobe.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */], __WEBPACK_IMPORTED_MODULE_0__angular_core__["t" /* ElementRef */]])
+        __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["t" /* ElementRef */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["t" /* ElementRef */]) === "function" && _d || Object])
     ], WardrobePage);
     return WardrobePage;
+    var _a, _b, _c, _d;
 }());
 
 //# sourceMappingURL=wardrobe.js.map
@@ -561,6 +564,7 @@ var MyApp = /** @class */ (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PassageSelectPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__wardrobe_wardrobe__ = __webpack_require__(195);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -572,12 +576,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
-/**
- * Generated class for the PassageSelectPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+
 var PassageSelectPage = /** @class */ (function () {
     function PassageSelectPage(navCtrl, navParams) {
         this.navCtrl = navCtrl;
@@ -586,13 +585,17 @@ var PassageSelectPage = /** @class */ (function () {
     PassageSelectPage.prototype.ionViewDidLoad = function () {
         console.log('ionViewDidLoad PassageSelectPage');
     };
+    PassageSelectPage.prototype.choose = function (option) {
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_2__wardrobe_wardrobe__["a" /* WardrobePage */], { activeSlide: option });
+    };
     PassageSelectPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-passage-select',template:/*ion-inline-start:"/Users/lei/Documents/projects/dummyapp/rl-app/src/pages/passage-select/passage-select.html"*/'<ion-content>\n	<img id="logo" src="../assets/imgs/Logo.svg"/>\n	<section class="main">\n		<ion-row class="vertical-center">\n			<h2>Sunday<br>Beach Classics</h2>\n			<ion-icon name="ios-arrow-forward"></ion-icon>\n		</ion-row>\n		<ion-row class="vertical-center">\n			<h2>Opening<br>Night Mod</h2>\n			<ion-icon name="ios-arrow-forward"></ion-icon>\n		</ion-row>\n		<ion-row class="vertical-center">\n			<h2>A Casual<br>Chic Holiday</h2>\n			<ion-icon name="ios-arrow-forward"></ion-icon>\n		</ion-row>\n		<ion-row class="vertical-center">\n			<h2>Explorers of<br>Leisure</h2>\n			<ion-icon name="ios-arrow-forward"></ion-icon>\n		</ion-row>\n		<ion-row class="vertical-center">\n			<h2>A Professional<br>Fit</h2>\n			<ion-icon name="ios-arrow-forward"></ion-icon>\n		</ion-row>\n	</section>\n\n</ion-content>\n'/*ion-inline-end:"/Users/lei/Documents/projects/dummyapp/rl-app/src/pages/passage-select/passage-select.html"*/,
+            selector: 'page-passage-select',template:/*ion-inline-start:"/Users/lei/Documents/projects/dummyapp/rl-app/src/pages/passage-select/passage-select.html"*/'<ion-content>\n	<img id="logo" src="../assets/imgs/Logo.svg"/>\n	<section class="main">\n		<ion-row class="vertical-center" (tap)="choose(0)">\n			<h2>Sunday<br>Beach Classics</h2>\n			<ion-icon name="ios-arrow-forward"></ion-icon>\n		</ion-row>\n		<ion-row class="vertical-center" (tap)="choose(1)">\n			<h2>Opening<br>Night Mod</h2>\n			<ion-icon name="ios-arrow-forward"></ion-icon>\n		</ion-row>\n		<ion-row class="vertical-center" (tap)="choose(2)">\n			<h2>A Casual<br>Chic Holiday</h2>\n			<ion-icon name="ios-arrow-forward"></ion-icon>\n		</ion-row>\n		<ion-row class="vertical-center" (tap)="choose(3)">\n			<h2>Explorers of<br>Leisure</h2>\n			<ion-icon name="ios-arrow-forward"></ion-icon>\n		</ion-row>\n		<ion-row class="vertical-center" (tap)="choose(4)">\n			<h2>A Professional<br>Fit</h2>\n			<ion-icon name="ios-arrow-forward"></ion-icon>\n		</ion-row>\n	</section>\n\n</ion-content>\n'/*ion-inline-end:"/Users/lei/Documents/projects/dummyapp/rl-app/src/pages/passage-select/passage-select.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */]) === "function" && _b || Object])
     ], PassageSelectPage);
     return PassageSelectPage;
+    var _a, _b;
 }());
 
 //# sourceMappingURL=passage-select.js.map
