@@ -12,7 +12,7 @@ page-registration {
 				background-size:cover;
 				background-repeat:no-repeat;
 				background-position:center top;
-
+				display:table;
 				color:#fff;
 				font-family:'gotham';
 
@@ -53,6 +53,7 @@ page-registration {
 								display:block;
 								clear:both;
 								margin-bottom:1vh;
+								white-space:nowrap;
 							}
 
 						}

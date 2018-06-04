@@ -3,7 +3,7 @@
 	<section class="main">
 	 <!-- [ngStyle]="{'background-image':'url('+ss?.imgs[bgInd]+')'}" -->
 
-		<img class="init bg" [src]="init_bg" [ngClass]="{'blocked':resetFlag}"/>
+		<img class="init bg" src="{{init_bg}}" [ngClass]="{'blocked':resetFlag}"/>
 		<img class="bg" [src]="bg" [ngClass]="{'blocked':startSlides}"/>
 		<ion-slides autoplay="3000" loop="true" speed="2000" effect="fade" initialSlide="0" *ngIf="startSlides">
 			<!--  (ionSlideWillChange)="check($event)" -->
