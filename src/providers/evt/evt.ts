@@ -18,10 +18,26 @@ export class EvtProvider {
   evtApp : any;
   evtUser: any;
   constructor(public http: Http) {
-  	this.evtApp = new EVT.App('lJmvgVe07ETx7FpanlxBvLIur1y65GKS6f3tNh6W5SsxP6PW6pYZ2a66wvhx7RlNuVDvPiW31EifI23l');
+  	//this.evtApp = 
+  	let url = "//d10ka0m22z5ju5.cloudfront.net/toolkit/evrythng-js-sdk/evrythng-4.7.2.min.js";
+  	let scr = document.createElement("script");
+  	scr.type = "text/javascript";
+  	scr.id = "evtscript"
+    document.getElementsByTagName("head")[0].appendChild(scr);
+  	let self = this;
+
+  	scr.onloadeddata = function(){
+  		self.evtApp = new EVT.App('lJmvgVe07ETx7FpanlxBvLIur1y65GKS6f3tNh6W5SsxP6PW6pYZ2a66wvhx7RlNuVDvPiW31EifI23l');
+  	}
+
+  	scr.src = url;
+  }
+
+  loadScript(){
   }
 
   createUser(usr:{email:string,pass:string}){
+  	this.evtApp = new EVT.App('lJmvgVe07ETx7FpanlxBvLIur1y65GKS6f3tNh6W5SsxP6PW6pYZ2a66wvhx7RlNuVDvPiW31EifI23l');
   	return this.evtApp.appUser().create({
       email:usr.email,
       firstName:"test",

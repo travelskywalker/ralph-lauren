@@ -22,14 +22,33 @@ export class HomePage {
 	postpurchase:boolean = false;
 	timeout : any;
 	thngId:string = '';
+	intr: any;
 	@ViewChild(Slides) slider: Slides;
 	
   constructor(public navCtrl: NavController, public navParams: NavParams, private evt: EvtProvider) {
   	this.ss.imgs = [];
   	this.thngId = navParams.get('id');
+  	let self = this;
+  	let scheck = false;
+  	this.intr = setInterval(function(){
+  		let doc = <HTMLScriptElement>document.getElementById("evtscript");
+  		if(doc){
+  			doc.onload = function(){
+  				scheck = true;
+  				self.checkUserStore()
+  			}
+  		}
+  		console.log(doc);
+  		if(scheck) clearInterval(self.intr);
+  	},100);
+  	
+
+  }
+
+  checkUserStore(){
 
   	if(typeof localStorage.evrythngUser == "undefined" || localStorage.evrythngUser == ""){
-  		evt.createUser({"email":Date.now()+"@unkn.own","pass":"test1234"}).then(evtUser=>{
+  		this.evt.createUser({"email":Date.now()+"@unkn.own","pass":"test1234"}).then(evtUser=>{
   			localStorage.evrythngUser = evtUser.evrythngUser;
   			localStorage.evrythngApiKey = evtUser.evrythngApiKey;
 
@@ -70,6 +89,7 @@ export class HomePage {
 
   ionViewWillLeave(){
   	clearTimeout(this.timeout);
+  	clearInterval(this.intr);
   }
 
   launchSlides(){
@@ -80,7 +100,7 @@ export class HomePage {
   		try{
   			this.slider.autoplay = 2000;
   		}catch(e){
-  			console.info(e);
+  			//console.info(e);
   		}
   	},1000);
   }

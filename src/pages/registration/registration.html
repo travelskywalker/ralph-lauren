@@ -50,9 +50,7 @@
 				</a>
 				<span class="select-container">
 					<select name="agerange"  [(ngModel)] = "userData.age">
-						<option value="2636">26 - 36 years old</option>
-						<option value="3747">37 - 47 years old</option>
-						<option value="4858">48 - 58 years old</option>
+						<option *ngFor = "let a of ages" value="{{a}}">{{a}}</option>
 					</select>
 					<ion-icon ios="ios-arrow-down" md="ios-arrow-down"></ion-icon>
 				</span>
@@ -117,6 +115,7 @@
 					</p>
 				</ion-col>
 			</ion-row>
+			<div class="space-5"></div>
 		
 	</section>
 </ion-content>
