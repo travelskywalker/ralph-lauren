@@ -38,9 +38,9 @@ export class HomePage {
   				self.checkUserStore()
   			}
   		}
-  		console.log(doc);
+  		//console.log(doc);
   		if(scheck) clearInterval(self.intr);
-  	},100);
+  	},250);
   	
 
   }
