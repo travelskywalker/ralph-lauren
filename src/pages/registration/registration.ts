@@ -3,6 +3,8 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 import { ThankYouPage } from '../thank-you/thank-you';
 
+import { EvtProvider } from '../../providers/evt/evt';
+
 import { config } from '../../config/config';
 
  export interface user {
@@ -36,7 +38,7 @@ export class RegistrationPage {
   errorClass_lastname: string = '';
   errorClass_email: string = '';
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private evt: EvtProvider) {
   }
 
   ionViewDidLoad() {
@@ -63,6 +65,10 @@ export class RegistrationPage {
     	// submit form
     	localStorage.userData = JSON.stringify(this.userData);
     	localStorage.fittings = JSON.stringify(this.fittings);
+
+    	this.evt.createAction(localStorage.th,"_OfferAccepted",{offerType:localStorage.offer}).then(act=>{
+    		console.info(act.json());
+    	}).catch(console.info);
 
     	this.navCtrl.setRoot(ThankYouPage);
     }

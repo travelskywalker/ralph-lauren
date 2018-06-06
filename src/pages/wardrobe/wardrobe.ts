@@ -38,6 +38,7 @@ export class WardrobePage {
 
   choose(garment:string){
   	localStorage.wardrobe = this.selection[garment];
+  	localStorage.offer = garment;
   	this.navCtrl.push(RegistrationPage);
   }
 

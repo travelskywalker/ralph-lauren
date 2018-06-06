@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, MenuController } from 'ionic-angular';
 
 import { ThankYou2Page } from '../thank-you2/thank-you2';
+
+import { EvtProvider } from '../../providers/evt/evt';
 /**
  * Generated class for the ThankYouPage page.
  *
@@ -22,7 +24,7 @@ export class ThankYouPage {
 	scores : {q1:number,q2:number,q3:number} = {q1:0,q2:0,q3:0};
 	img:string = "";
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private menu:MenuController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private menu:MenuController, private evt: EvtProvider) {
   	this.img = localStorage.wardrobe || {};
   }
 
@@ -44,6 +46,15 @@ export class ThankYouPage {
   }
 
   lastPage(){
+  	let srv = {
+  				purchaseAgain: this.scores.q1,
+  				closerToEssence: this.scores.q2,
+  				scanQrAgain: this.scores.q3
+  				};
+  	this.evt.createAction(localStorage.th,"_SurveyCompleted",srv).then(act=>{
+  		console.log(act.json());
+  	}).catch(console.info);
+  	
   	this.navCtrl.setRoot(ThankYou2Page);
   }
 

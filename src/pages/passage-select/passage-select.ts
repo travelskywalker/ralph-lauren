@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 import { WardrobePage } from '../wardrobe/wardrobe';
+import { ThankYou2Page } from '../thank-you2/thank-you2';
 
 @IonicPage()
 @Component({
@@ -18,7 +19,11 @@ export class PassageSelectPage {
   }
 
   choose(option:number){
-  	this.navCtrl.push(WardrobePage,{activeSlide: option});
+    if(localStorage.newEntry === "true"){
+      this.navCtrl.push(WardrobePage,{activeSlide: option});
+    }else{
+      this.navCtrl.push(ThankYou2Page)
+    }
   }
 
 }

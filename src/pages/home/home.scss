@@ -197,6 +197,12 @@ page-home {
 							position:absolute;
 							width:100%;
 							bottom: 7.5vh;
+
+							a{
+								text-decoration:none;
+								color:inherit;
+							}
+
 							ion-row{
 								position:relative;
 								bottom:0;

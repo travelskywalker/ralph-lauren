@@ -1,11 +1,21 @@
 <ion-content>
 	<img id="logo" src="../assets/imgs/Logo.svg"/>
 
+	<section class="part1" *ngIf="newEntry">
+		<p class="content">
+			Thanks and congratulations,<br/><a class="cap">{{salutation}}</a>. <a class="cap">{{name}}</a>. <br/>
+			Welcome to the exclusive world of Ralph Lauren.
+		</p>
 
-	<p class="content">
-		Thanks and congratulations,<br/><a class="cap">{{salutation}}</a>. <a class="cap">{{name}}</a>. <br/>
-		Welcome to the exclusive world of Ralph Lauren.
-	</p>
 
+		<p class="earned">
+			Your garment has earned you an entry.
+		</p>
+	</section>
+	<section class="part2" *ngIf="!newEntry">
+		<p class="content">
+			This purchased item has already been registered. Shop for more Polo Ralph Lauren items for more entries.
+		</p>
+	</section>
 
 </ion-content>

@@ -17,6 +17,7 @@ export class ThankYou2Page {
 
 	salutation:string = "mr";
 	name:string = "Maya";
+	newEntry:boolean = eval(localStorage.newEntry);
   constructor(public navCtrl: NavController) {
   }
 

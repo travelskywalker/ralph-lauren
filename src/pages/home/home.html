@@ -12,7 +12,7 @@
 		    </ion-slide>
 		</ion-slides>
 		<div class="part1" *ngIf="lang?.length <= 0 && purchased && !postpurchase">
-			<p class="text-top">
+			<p class="text-top" *ngIf="resetFlag">
 				Congratulations on your <br/>
 				polo ralph lauren purchase.
 			</p>
@@ -20,7 +20,7 @@
 			<h2 (tap)="launchSlides()">Welcome<br/>
 				<a class="small">歡迎</a>
 			</h2>
-			<ion-row>
+			<ion-row *ngIf="resetFlag">
 				<ion-col col-6 (tap)="proceedFlow('eng')">
 					<p class="text">
 						ENGLISH
@@ -86,12 +86,14 @@
 			<span class="bot">
 				<ion-row>
 					<ion-col col-12>
-						<p class="text">
-							I ALREADY PURCHASED THIS ITEM
-						</p>
-						<p class="caret">
-							<ion-icon ios="ios-arrow-forward" md="ios-arrow-forward"></ion-icon>
-						</p>
+						<a href="mailto:demo@engmntprty.com?subject=Your+Scan&body=product_id%3A{{thngId}}">
+							<p class="text">
+								I ALREADY PURCHASED THIS ITEM
+							</p>
+							<p class="caret">
+								<ion-icon ios="ios-arrow-forward" md="ios-arrow-forward"></ion-icon>
+							</p>
+						</a>
 					</ion-col>
 				</ion-row>
 				<ion-row>

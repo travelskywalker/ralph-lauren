@@ -56,24 +56,39 @@ export class HomePage {
    ** Creates one if it doesn't exist.				 *
    ** Perfoms the scan of the parameter id			 */
   checkUserStore(){
+  	let self = this;
   	console.log('loaded');
   	if(typeof localStorage.evrythngUser == "undefined" || localStorage.evrythngUser == ""){
-  		this.evt.createUser({"email":Date.now()+"@unkn.own","pass":"test1234"}).then(evtUser=>{
-  			localStorage.evrythngUser = evtUser.evrythngUser;
-  			localStorage.evrythngApiKey = evtUser.evrythngApiKey;
+  		this.evt.createUser().then(evtUser=>{
+  			localStorage.evrythngUser = evtUser.id;
+  			localStorage.evrythngApiKey = evtUser.apiKey;
 
-  			this.evt.scanThng(this.thngId).then(th=>{
-  				if(th.hasOwnProperty('identifiers') && th.identifiers.hasOwnProperty('sku')){
-  					if(th.hasOwnProperty('tags') && th.tags.includes('purchased')){
-	  					this.bg = "../assets/imgs/"+th.identifiers.sku+".jpg";
-	  					this.thngLoaded();
+  			this.evt.scanThng(this.thngId).then(thng=>{
+  				let th = thng.json();
+  				localStorage.th = th.id;
+  				localStorage.newEntry = !eval(th.customFields.promotion);
+  				if(th.customFields.activated === "true"){
+  					if(th.customFields.hasOwnProperty('purchased') && th.customFields.purchased === "true"){
+			  			self.evt.scanProd(th.product).then(prod=>{
+			  				let pr = prod.json();
+			  				self.bg = "../assets/imgs/products/"+pr.identifiers.id+".jpg";
+	  						self.thngLoaded();
+			  			}).catch(console.info);
 	  				}else{
-	  					this.bg = "../assets/imgs/"+th.identifiers.sku+".jpg";
-	  					this.resetFlag = true;
-	  					this.purchased = false;
+		  				self.evt.createAction(th.id,'_NotPurchased',{}).then(act=>{
+		  					console.log(act.json());
+		  				}).catch(console.info);
+
+			  			self.evt.scanProd(th.product).then(prod=>{
+			  				let pr = prod.json();
+			  				self.bg = "../assets/imgs/products/"+pr.identifiers.id+".jpg";
+			  			}).catch(console.info);
+	  					self.resetFlag = true;
+	  					self.purchased = false;
 	  				}
   				}
   				else{
+  					console.log(th.customFields.activated);
   					this.launchSlides();
   				}
   			}).catch(f=>{
@@ -82,18 +97,33 @@ export class HomePage {
   			});
   		}).catch(console.info);
   	}else{
-  		this.evt.scanThng(this.thngId).then(th=>{
-  			if(th.hasOwnProperty('identifiers') && th.identifiers.hasOwnProperty('sku')){
-  				if(th.hasOwnProperty('tags') && th.tags.includes('purchased')){
-	  				this.bg = "../assets/imgs/"+th.identifiers.sku+".jpg";
-	  				this.thngLoaded();
+  		this.evt.scanThng(this.thngId).then(thng=>{
+  			let th = thng.json();
+  			localStorage.th = th.id;
+  			localStorage.newEntry = !eval(th.customFields.promotion);
+  				
+  			if(th.customFields.activated === "true"){
+  				if(th.customFields.hasOwnProperty('purchased') && th.customFields.purchased === "true"){
+		  			self.evt.scanProd(th.product).then(prod=>{
+		  				let pr = prod.json();
+		  				self.bg = "../assets/imgs/products/"+pr.identifiers.id+".jpg";
+	  					self.thngLoaded();
+		  			}).catch(console.info);
 	  			}else{
-	  				this.bg = "../assets/imgs/"+th.identifiers.sku+".jpg";
-	  				this.resetFlag = true;
-	  				this.purchased = false;
+	  				self.evt.createAction(th.id,'_NotPurchased',{time:Date.now().toString(),a:'b'}).then(act=>{
+	  					console.log(act.json());
+	  				}).catch(console.info);
+
+			  		self.evt.scanProd(th.product).then(prod=>{
+			  			let pr = prod.json();
+			  			self.bg = "../assets/imgs/products/"+pr.identifiers.id+".jpg";
+			  		}).catch(console.info);
+	  				self.resetFlag = true;
+	  				self.purchased = false;
 	  			}
   			}
   			else{
+  				console.log(th.customFields.activated);
   				this.launchSlides();
   			}
   		}).catch(f=>{
