@@ -33,7 +33,7 @@ page-home {
 
 				img.bg{
 					&.init{
-						z-index:3;
+						z-index:2;
 					}
 					position:absolute;
 					display:block;
@@ -179,16 +179,28 @@ page-home {
 
 					&.unpurchased{
 						span.texter{
+							top:25vh;
 							p{
 								&.lrg-txt{
-									font-size:8.05vh;
-									line-height:7.25vh;
+									font-size:6.55vh;
+									line-height:6.25vh;
 									margin:1vh 0;
 								}
 
 								&.sm-txt{
 									font-size:2vh;
 								}
+							}
+						}
+
+						span.bot{
+							position:absolute;
+							width:100%;
+							bottom: 7.5vh;
+							ion-row{
+								position:relative;
+								bottom:0;
+								margin-top:5vh;
 							}
 						}
 					}

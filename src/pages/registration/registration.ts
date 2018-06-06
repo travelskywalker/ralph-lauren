@@ -27,10 +27,10 @@ export class RegistrationPage {
 
 	topSizes:Array<string> = config.top;
 	pantsSizes:Array<number> = config.pants;
-	shoeSizes:Array<number> = [5,5.5,6,6.5,7,7.5,8,8.5,9,9.5,10,10.5,11,11.5,12,12.5,13];
+	shoeSizes:Array<number> = config.shoes;
 	ages:Array<string> = config.age;
 
-	userData:user = {email:"",lastName:"",gender:"mr",age:"2636"};
+	userData:user = {email:"",lastName:"",gender:"mr",age:config.age[0]};
 	fittings:measurements = {top:"L",pants:33,shoe:7.5};
 
   errorClass_lastname: string = '';

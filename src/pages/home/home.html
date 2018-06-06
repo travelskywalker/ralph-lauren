@@ -5,7 +5,7 @@
 
 		<img class="init bg" src="{{init_bg}}" [ngClass]="{'blocked':resetFlag}"/>
 		<img class="bg" [src]="bg" [ngClass]="{'blocked':startSlides}"/>
-		<ion-slides autoplay="3000" loop="true" speed="2000" effect="fade" initialSlide="0" *ngIf="startSlides">
+		<ion-slides autoplay="3000" loop="true" speed="2000" effect="fade" initialSlide="0" *ngIf="startSlides && purchased">
 			<!--  (ionSlideWillChange)="check($event)" -->
 			<ion-slide *ngFor="let img of ss?.imgs; let i = index;">
 				<img [src]="img">
@@ -83,16 +83,28 @@
 					classic fit polo shirt.
 				</p>
 			</span>
-			<ion-row>
-				<ion-col col-12>
-					<p class="text">
-						PROCEED TO OUR WEBSITE
-					</p>
-					<p class="caret">
-						<ion-icon ios="ios-arrow-forward" md="ios-arrow-forward"></ion-icon>
-					</p>
-				</ion-col>
-			</ion-row>
+			<span class="bot">
+				<ion-row>
+					<ion-col col-12>
+						<p class="text">
+							I ALREADY PURCHASED THIS ITEM
+						</p>
+						<p class="caret">
+							<ion-icon ios="ios-arrow-forward" md="ios-arrow-forward"></ion-icon>
+						</p>
+					</ion-col>
+				</ion-row>
+				<ion-row>
+					<ion-col col-12>
+						<p class="text">
+							PROCEED TO OUR WEBSITE
+						</p>
+						<p class="caret">
+							<ion-icon ios="ios-arrow-forward" md="ios-arrow-forward"></ion-icon>
+						</p>
+					</ion-col>
+				</ion-row>
+			</span>
 		 </div>
 		<!-- end of unpurchased -->
 

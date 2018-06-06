@@ -5,6 +5,8 @@ import { EvtProvider } from '../../providers/evt/evt';
 
 import { PassageSelectPage } from '../passage-select/passage-select';
 
+declare var EVT;
+
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html',
@@ -29,24 +31,32 @@ export class HomePage {
   	this.ss.imgs = [];
   	this.thngId = navParams.get('id');
   	let self = this;
-  	let scheck = false;
+
+
+  	/* We are dynamically adding the evrythng.js script *
+  	 * We only begin using evt services once we check	*
+  	 * that it has been loaded.							*/
   	this.intr = setInterval(function(){
-  		let doc = <HTMLScriptElement>document.getElementById("evtscript");
-  		if(doc){
-  			doc.onload = function(){
-  				scheck = true;
-  				self.checkUserStore()
-  			}
+  		let doc;
+  		try{
+  			doc = EVT;
+  			self.checkUserStore();
+			clearInterval(self.intr);
+  		}catch(e){
+  			//console.error(e);
+  			// wait until evt has loaded
   		}
-  		//console.log(doc);
-  		if(scheck) clearInterval(self.intr);
+  		console.log(doc);
   	},250);
   	
 
   }
 
+  /** Checks the localstorage for evrythng user vars *
+   ** Creates one if it doesn't exist.				 *
+   ** Perfoms the scan of the parameter id			 */
   checkUserStore(){
-
+  	console.log('loaded');
   	if(typeof localStorage.evrythngUser == "undefined" || localStorage.evrythngUser == ""){
   		this.evt.createUser({"email":Date.now()+"@unkn.own","pass":"test1234"}).then(evtUser=>{
   			localStorage.evrythngUser = evtUser.evrythngUser;
@@ -54,23 +64,48 @@ export class HomePage {
 
   			this.evt.scanThng(this.thngId).then(th=>{
   				if(th.hasOwnProperty('identifiers') && th.identifiers.hasOwnProperty('sku')){
-  					this.bg = "../assets/imgs/"+th.identifiers.sku+".jpg";
-  					this.thngLoaded();
+  					if(th.hasOwnProperty('tags') && th.tags.includes('purchased')){
+	  					this.bg = "../assets/imgs/"+th.identifiers.sku+".jpg";
+	  					this.thngLoaded();
+	  				}else{
+	  					this.bg = "../assets/imgs/"+th.identifiers.sku+".jpg";
+	  					this.resetFlag = true;
+	  					this.purchased = false;
+	  				}
   				}
-  			}).catch(console.info);
+  				else{
+  					this.launchSlides();
+  				}
+  			}).catch(f=>{
+  				this.launchSlides();
+  				console.info(f);
+  			});
   		}).catch(console.info);
   	}else{
   		this.evt.scanThng(this.thngId).then(th=>{
   			if(th.hasOwnProperty('identifiers') && th.identifiers.hasOwnProperty('sku')){
-  				this.bg = "../assets/imgs/"+th.identifiers.sku+".jpg";
-  				this.thngLoaded();
+  				if(th.hasOwnProperty('tags') && th.tags.includes('purchased')){
+	  				this.bg = "../assets/imgs/"+th.identifiers.sku+".jpg";
+	  				this.thngLoaded();
+	  			}else{
+	  				this.bg = "../assets/imgs/"+th.identifiers.sku+".jpg";
+	  				this.resetFlag = true;
+	  				this.purchased = false;
+	  			}
   			}
-  		}).catch(console.info);
+  			else{
+  				this.launchSlides();
+  			}
+  		}).catch(f=>{
+  				this.launchSlides();
+  				console.info(f);
+  			});
 
   	}
   }
 
   thngLoaded(){
+  	console.log('thngloaded');
   	let self = this;
 
   	let imgld = new Image;
@@ -78,7 +113,7 @@ export class HomePage {
   		self.resetFlag = true;	//remove the placeholder img
 	  	setTimeout(()=>{
 	  		self.launchSlides();
-	  	},3000);
+	  	},4000);
   	}
 
   	imgld.src = this.bg;	//set the product's image
@@ -92,6 +127,7 @@ export class HomePage {
   	clearInterval(this.intr);
   }
 
+  /* launch the slideshow */
   launchSlides(){
   	let preload = localStorage.preload.split(",");
   	this.ss.imgs = this.ss.imgs.concat(preload);
