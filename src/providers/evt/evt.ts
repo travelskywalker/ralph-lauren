@@ -27,6 +27,9 @@ export class EvtProvider {
   	let self = this;
 
   	scr.onloadeddata = function(){
+  		EVT.setup({
+  			geolocation:true
+  		});
   		self.evtApp = new EVT.App('lJmvgVe07ETx7FpanlxBvLIur1y65GKS6f3tNh6W5SsxP6PW6pYZ2a66wvhx7RlNuVDvPiW31EifI23l');
   	}
 

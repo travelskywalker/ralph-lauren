@@ -41,6 +41,7 @@ export class MyApp {
       splashScreen.hide();
       this.preloader(this.slides,"slides");
       this.preloader(this.images);
+      this.freshStart();
     });
   }
 
@@ -53,6 +54,16 @@ export class MyApp {
     ).then(a=>{
       if(name != "" && name.trim().length > 0) localStorage.preload = arr;
     });
+  }
+
+  freshStart(){
+    localStorage.removeItem("country");
+    localStorage.removeItem("fittings");
+    localStorage.removeItem("newEntry");
+    localStorage.removeItem("offer");
+    localStorage.removeItem("th");
+    localStorage.removeItem("userData");
+    localStorage.removeItem("wardrobe");
   }
 }
 

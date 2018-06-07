@@ -25,6 +25,8 @@ export class HomePage {
 	timeout : any;
 	thngId:string = '';
 	intr: any;
+	siteUrls = {"AU":"https://www.ralphlauren.com.au/en?country=Australia", "HK":"https://www.ralphlauren.asia/zh-hant?country=Hong%20Kong"};
+	locationData : string;
 	@ViewChild(Slides) slider: Slides;
 	
   constructor(public navCtrl: NavController, public navParams: NavParams, private evt: EvtProvider) {
@@ -67,6 +69,16 @@ export class HomePage {
   				let th = thng.json();
   				localStorage.th = th.id;
   				localStorage.newEntry = !eval(th.customFields.promotion);
+
+  				th.action("scans").create().then(act=>{
+  					let a = act.json();
+  					let cc = a.context.countryCode;
+  					if(!['HK','AU'].includes(cc)) cc = 'HK';
+  					localStorage.country = cc;
+  					localStorage.rl_link = this.siteUrls[cc];
+  					this.locationData = cc;
+  				});
+
   				if(th.customFields.activated === "true"){
   					if(th.customFields.hasOwnProperty('purchased') && th.customFields.purchased === "true"){
 			  			self.evt.scanProd(th.product).then(prod=>{
@@ -102,6 +114,15 @@ export class HomePage {
   			localStorage.th = th.id;
   			localStorage.newEntry = !eval(th.customFields.promotion);
   				
+  			this.evt.createAction(th.id,'scans').then(act=>{
+  				let a = act.json();
+  				let cc = a.context.countryCode;
+  				if(!['HK','AU'].includes(cc)) cc = 'HK';
+  				localStorage.country = cc;
+  				localStorage.rl_link = this.siteUrls[cc];
+  				this.locationData = cc;
+  			});
+  				
   			if(th.customFields.activated === "true"){
   				if(th.customFields.hasOwnProperty('purchased') && th.customFields.purchased === "true"){
 		  			self.evt.scanProd(th.product).then(prod=>{
@@ -110,7 +131,7 @@ export class HomePage {
 	  					self.thngLoaded();
 		  			}).catch(console.info);
 	  			}else{
-	  				self.evt.createAction(th.id,'_NotPurchased',{time:Date.now().toString(),a:'b'}).then(act=>{
+	  				self.evt.createAction(th.id,'_NotPurchased').then(act=>{
 	  					console.log(act.json());
 	  				}).catch(console.info);
 
